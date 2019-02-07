@@ -10,34 +10,7 @@
     <link rel="stylesheet" type="text/css" href="manga-style.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-    <script>
-        //上に行くボタンの動作
-        $(function() {
-            var appear = false;
-            var pagetop = $('#page_top');
-            $(window).scroll(function () {
-                if ($(this).scrollTop() > 100) {  //100pxスクロールしたら
-                if (appear === false) {
-                    appear = true;
-                    pagetop.stop().animate({
-                    'right': '30px' //右から0pxの位置に
-                    }, 300); //0.3秒かけて現れる
-                }
-                } else {
-                if (appear) {
-                    appear = false;
-                    pagetop.stop().animate({
-                    'right': '-80px' //右から-50pxの位置に
-                    }, 300); //0.3秒かけて隠れる
-                }
-                }
-            });
-            pagetop.click(function () {
-                $('body, html').animate({ scrollTop: 0 }, 500); //0.5秒かけてトップへ戻る
-                return false;
-            });
-        });
-    </script>
+    <script src="up.js"></script>
     <?php
         date_default_timezone_set('Asia/Tokyo');
 
