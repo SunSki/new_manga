@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>お気に入り削除</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="manga-style.css">
+    <link rel="stylesheet" type="text/css" href="manga_style.css">
     <?php
         //接続用パラメータの設定
         $host = 'localhost';

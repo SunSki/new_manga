@@ -7,7 +7,7 @@
     <title>新着WEBマンガ一覧</title>
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="manga-style.css">
+    <link rel="stylesheet" type="text/css" href="manga_style.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="up.js"></script>
@@ -158,7 +158,11 @@
         </div>
     </div>
 
-    <div id="page_top"><a href="#"></a>
+    <div id="page_top"><a href="#"></a></div>
+
+    <footer>
+        <div></div>
+    </footer>
     
     <!-- <?php
     //デバッグ用
