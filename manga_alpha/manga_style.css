@@ -9,10 +9,14 @@ a:hover {
 }
 
 header {
-  background-color: #9DDCDC;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  margin-bottom: 40px;
+    z-index: 1;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: #9DDCDC;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 40px;
 }
 header .logo a {
   color: #E67A7A;
@@ -48,7 +52,9 @@ header .square_btn:active {
 }
 
 body {
-  background-color: #FFF4E1;
+    z-index: 0;
+    margin-top: 120px;
+    background-color: #FFF4E1;
 }
 
 .title {

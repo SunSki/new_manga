@@ -7,7 +7,7 @@
     <title>新着WEBマンガ一覧</title>
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="manga-style.css">
+    <link rel="stylesheet" type="text/css" href="manga_style.css">
     <?php
         date_default_timezone_set('Asia/Tokyo');
 
@@ -69,7 +69,7 @@
         }
 
         function logo($img,$url){
-            echo "<p><a href='${url}' target='_blank'><img src='${img}' height='30em'></a></p>";
+            echo "<p><a href='${url}' target='_blank'><img src='${img}' height='25em'></a></p>";
         }
 
         $res_plus = jsonDecode('http://localhost:3001/get_jampplus');
