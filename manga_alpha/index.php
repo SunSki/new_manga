@@ -7,7 +7,37 @@
     <title>新着WEBマンガ一覧</title>
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="manga_style.css">
+    <link rel="stylesheet" type="text/css" href="manga-style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>
+        //上に行くボタンの動作
+        $(function() {
+            var appear = false;
+            var pagetop = $('#page_top');
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 100) {  //100pxスクロールしたら
+                if (appear === false) {
+                    appear = true;
+                    pagetop.stop().animate({
+                    'right': '10px' //右から0pxの位置に
+                    }, 300); //0.3秒かけて現れる
+                }
+                } else {
+                if (appear) {
+                    appear = false;
+                    pagetop.stop().animate({
+                    'right': '-50px' //右から-50pxの位置に
+                    }, 300); //0.3秒かけて隠れる
+                }
+                }
+            });
+            pagetop.click(function () {
+                $('body, html').animate({ scrollTop: 0 }, 500); //0.5秒かけてトップへ戻る
+                return false;
+            });
+        });
+    </script>
     <?php
         date_default_timezone_set('Asia/Tokyo');
 
@@ -32,7 +62,7 @@
             return $daydiff;
         }
 
-        function manga_show($res){
+        function manga_show($res,$mode){
             $today = date("Y/m/d");
             $date_now ='';
             foreach($res as $item){
@@ -40,13 +70,14 @@
                 $link = $item->link; //書籍のリンク
                 $date = $item->date;
                 $img = $item->img;
+                $detail = $item->detail;
                 if ($date_now != $date){
                     echo "<hr>";
                     $ago = day_diff($today,$date);
                     if($ago!=0){
-                        echo "<div>${ago}日前</div>";
+                        echo "<div class='ago'>${ago}日前</div>";
                     }else{
-                        echo "<div>本日更新</div>";
+                        echo "<div class='ago'>本日更新</div>";
                     }
                     
                     echo "<div class='split-date'>$date</div>";
@@ -55,13 +86,12 @@
                 echo "<div class='container'>";
                 echo "<a href='${link}' target='_blank'>";
                     echo "<div class='row work-list pt-1 pb-1 mb-1 mt-1'>";
-                        echo "<div class='col-sm-4'>";
-                            echo "<div><img src='${img}' class='manga-img'></div>";
-                        echo "</div>";
-                        echo "<div class='col-sm-8'>";
+                        echo "<div><img src='${img}' class='manga-img'></div>";
+                        if($mode == "title"){
                             echo "<div class='title'>${title}</div>";
-                            echo "<div class='date'>${date}</div>";
-                        echo "</div>";
+                        }
+                        echo "<div class='title'>${detail}</div>";
+                        //echo "<div class='date'>${date}</div>";
                     echo "</div>";
                 echo"</a>";
                 echo "</div>";
@@ -69,7 +99,7 @@
         }
 
         function logo($img,$url){
-            echo "<p><a href='${url}' target='_blank'><img src='${img}' height='25em'></a></p>";
+            echo "<p><a href='${url}' target='_blank'><img src='${img}' height='30px'></a></p>";
         }
 
         $res_plus = jsonDecode('http://localhost:3001/get_jampplus');
@@ -78,52 +108,84 @@
     ?>
 </head>
 
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md logo">
-                <a href="index.php">新着WEBマンガ</a>
-            </div>
-            <div class="col-md text-right">
-                <a href="auth.php" class="mypage mr-3">Myページ</a>
-                <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
-            </div>
-        </div>
-    </div>
-</header>
-
 <body>
+    <div class='top pt-2 pb-2'>
+    <nav class="navbar justify-content-between sticky-top">
+        <div class="logo ml-4">
+                <a href="index.php">新着WEBマンガ</a>
+        </div>
+        <div class="text-right mr-4">
+            <a href="auth.php" class="mypage mr-3">Myページ</a>
+            <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
+        </div>
+    </nav>
+    </div>
+    <nav class="navbar justify-content-around sticky-top down">
+        <div class="container logo_head pt-2">
+            <?php
+                //プラス
+                logo("img/plus_60.png","https://shonenjumpplus.com/series");
+            ?>
+            <?php
+                //となり
+                echo"<div class='tonari'>";
+                logo("img/tonari_60.png","https://tonarinoyj.jp/series");
+                echo"</div>";
+                
+            ?>
+            <hr>
+
+            <?php
+                //ヤング
+                echo"<div class='young'>";
+                logo("img/young_60.png","https://web-ace.jp/youngaceup/contents/");
+                echo"</div>";
+                
+            ?>
+        </div>
+    </nav>
+
+
+
     <div class="container">
         <div class="row">
             <div class="col-md-4">
                 <?php
-                    //プラス
-                    logo("img/jumpplus_red.png","https://shonenjumpplus.com/series");
                     //echo count($res_plus)."作品";
-                    manga_show($res_plus);
+                    manga_show($res_plus,'none');
                 ?>
                 <hr>
             </div>
             <div class="col-md-4">
                 <?php
-                    //となり
-                    logo("img/tonari.png","https://tonarinoyj.jp/series");
                     //echo count($res_tonari)."作品";
-                    manga_show($res_tonari);
+                    manga_show($res_tonari,'none');
                 ?>
                 <hr>
             </div>
             <div class="col-md-4">
                 <?php
-                    //ヤング
-                    logo("img/youngaceup-logo.png","https://web-ace.jp/youngaceup/contents/");
                     //echo count($res_young)."作品";
-                    manga_show($res_young);
+                    echo"<div class='young_list'>";
+                    manga_show($res_young,'title');
+                    echo"</div>";
+                    
                 ?>
                 <hr>
             </div>
         </div>
     </div>
+
+    <div id="page_top"><a href="#"></a>
+    
+    <!-- <?php
+    //デバッグ用
+        for ($i=0; $i<30; $i++){
+            echo"<div><h1>こんちは</h1></div>";
+        }
+    ?> -->
+    
+
 </body>
 
 </html>
