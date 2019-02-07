@@ -36,7 +36,7 @@ nav .young{
     margin-right: 70px;
 }
 .young_list{
-    margin-left: 20px;
+    margin-left: 50px;
 }
 nav .mypage{
     color: white;
@@ -88,9 +88,13 @@ body {
 
 .ago{
     font-size: 24px;
+    font-weight: bold;
 }
 .split-date{
-    font-size: 16px;
+    font-size: 18px;
+}
+.week{
+    font-size: 20px;
     margin-bottom: 20px;
 }
 
@@ -207,10 +211,10 @@ background    : #ffffff;     /* 文字色     */
 }
 
 #page_top{
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     position: fixed;
-    right: -50px;
+    right: -80px;
     bottom: 50px;
     background: #ef3f40;
     opacity: 0.6;
@@ -219,18 +223,18 @@ background    : #ffffff;     /* 文字色     */
   #page_top a{
     position: relative;
     display: block;
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     text-decoration: none;
   }
   #page_top a::before{
     font-family: FontAwesome;
     content: '\f102';
-    font-size: 25px;
+    font-size: 40px;
     color: #fff;
     position: absolute;
-    width: 25px;
-    height: 25px;
+    width: 40px;
+    height: 40px;
     top: 0;
     bottom: 0;
     right: 0;
@@ -238,4 +242,3 @@ background    : #ffffff;     /* 文字色     */
     margin: auto;
     text-align: center;
   }
-  

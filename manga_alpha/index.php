@@ -20,14 +20,14 @@
                 if (appear === false) {
                     appear = true;
                     pagetop.stop().animate({
-                    'right': '10px' //右から0pxの位置に
+                    'right': '30px' //右から0pxの位置に
                     }, 300); //0.3秒かけて現れる
                 }
                 } else {
                 if (appear) {
                     appear = false;
                     pagetop.stop().animate({
-                    'right': '-50px' //右から-50pxの位置に
+                    'right': '-80px' //右から-50pxの位置に
                     }, 300); //0.3秒かけて隠れる
                 }
                 }
@@ -40,6 +40,13 @@
     </script>
     <?php
         date_default_timezone_set('Asia/Tokyo');
+
+        function week ($date){
+            $datetime = new DateTime($date);
+            $week = array("日", "月", "火", "水", "木", "金", "土");
+            $w = (int)$datetime->format('w');
+            echo $week[$w] . "曜日";
+        }
 
         #jsonからphp用のオブジェクトに変換
         function jsonDecode($link){
@@ -81,10 +88,12 @@
                     }
                     
                     echo "<div class='split-date'>$date</div>";
+                    $week = week($date);
+                    echo "<div class='split-date'>$week</div>";
                 }
                 $date_now = $date;
                 echo "<div class='container'>";
-                echo "<a href='${link}' target='_blank'>";
+                echo "<a href='${link}'>";
                     echo "<div class='row work-list pt-1 pb-1 mb-1 mt-1'>";
                         echo "<div><img src='${img}' class='manga-img'></div>";
                         if($mode == "title"){
@@ -99,7 +108,7 @@
         }
 
         function logo($img,$url){
-            echo "<p><a href='${url}' target='_blank'><img src='${img}' height='30px'></a></p>";
+            echo "<p><a href='${url}'><img src='${img}' height='30px'></a></p>";
         }
 
         $res_plus = jsonDecode('http://localhost:3001/get_jampplus');
