@@ -66,7 +66,7 @@
             removeShow($mysqli,$res_all);
         }
 
-        $state;
+        $state;//0:ログインしてる 1:ログインしてない
         session_start();//セッション開始
         if(isset($_SESSION['name'])){
             $name = $_SESSION['name'];
@@ -78,7 +78,7 @@
     ?>
 </head>
 
-<header>
+<!-- <header>
     <div class="container">
         <div class="row">
             <div class="col-md logo">
@@ -94,15 +94,33 @@
             </div>
         </div>
     </div>
-</header>
+</header> -->
 
 <body>
+    
+    <div class='top pt-2 pb-2'>
+        <nav class="navbar justify-content-between sticky-top">
+            <div class="logo ml-4">
+                    <a href="index.php">新着WEBマンガ</a>
+            </div>
+            <div class="text-right mr-4">
+                <?php
+                    if($state == 0){
+                        echo"<a href='auth.php' class='mypage mr-3'>${name}のページ</a>";
+                    }
+                ?>
+                <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
+            </div>
+        </nav>
+    </div>
+
     <?php
         if(state == 0){
             $name = $_SESSION['name'];
             show($mysqli,$name);
         }else{
-            echo "ログインしていません。";
+            echo "<div>ログインしていません。</div>";
+
         }
         
     ?>

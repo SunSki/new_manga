@@ -5,7 +5,7 @@
     <title>ユーザー登録</title>
     <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="manga-style.css">
+    <link rel="stylesheet" type="text/css" href="manga_style.css">
     <?php
         //接続用パラメータの設定
         $host = 'localhost'; //データベースが動作するホスト
@@ -25,21 +25,19 @@
     ?>
 </head>
 
-<header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md logo">
-                <a href="index.php">新着WEBマンガ</a>
+<body>
+    <div class='top pt-2 pb-2'>
+        <nav class="navbar justify-content-between sticky-top">
+            <div class="logo ml-4">
+                    <a href="index.php">新着WEBマンガ</a>
             </div>
-            <div class="col-md text-right">
+            <div class="text-right mr-4">
                 <a href="auth.php" class="mypage mr-3">Myページ</a>
                 <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
             </div>
-        </div>
+        </nav>
     </div>
-</header>
 
-<body>
     <?php
         //入力データの受取
         echo"<div class='container'>";

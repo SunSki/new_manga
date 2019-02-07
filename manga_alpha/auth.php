@@ -235,19 +235,20 @@
 
         session_start();//セッション開始
 
-        $state;
+        $state;//状態の振り分け 0:初回ログイン,1:名前なし,2:セッションでログイン,3:不正なアクセス       
         if(!empty($_POST["login"])){
             $name = $_POST["login"];
             $sql = "select * from users where name = '$name'";
             $result = $mysqli->query($sql); //SQL文の実行
 
-            if($result->num_rows > 0){
+            if($result->num_rows != 0){
 
                 $name = $_POST["login"];
                 $_SESSION['name'] = $name;
                 //echo "ログイン成功！<br>";
                 $state = 0;
             }else{
+                //名前が登録されていない時
                 $state = 1;
             }
         }else if(isset($_SESSION['name'])){
@@ -255,6 +256,7 @@
             $name = $_SESSION['name'];
             $state = 2;
         }else{
+            //セッションなしで、直接URL
             $state = 3;
         }
     ?>

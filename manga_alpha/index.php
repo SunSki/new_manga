@@ -91,6 +91,7 @@
 </head>
 
 <body>
+
     <div class='top pt-2 pb-2'>
     <nav class="navbar justify-content-between sticky-top">
         <div class="logo ml-4">
@@ -102,6 +103,7 @@
         </div>
     </nav>
     </div>
+
     <nav class="navbar justify-content-around sticky-top down">
         <div class="container logo_head pt-2">
             <?php
@@ -126,8 +128,6 @@
             ?>
         </div>
     </nav>
-
-
 
     <div class="container">
         <div class="row">
@@ -163,15 +163,6 @@
     <footer>
         <div></div>
     </footer>
-    
-    <!-- <?php
-    //デバッグ用
-        for ($i=0; $i<30; $i++){
-            echo"<div><h1>こんちは</h1></div>";
-        }
-    ?> -->
-    
-
 </body>
 
 </html>
