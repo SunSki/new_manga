@@ -8,6 +8,39 @@ a:hover {
   text-decoration: none;
 }
 
+.input{
+    padding:10px;
+    font-size:1.3em;
+    font-family:Arial, sans-serif;
+    color:#aaa;
+    border:solid 1px #ccc;
+    margin:0 0 10px;
+    width:100%;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+.input:focus {
+    border:solid 2px #E67A7A;
+}
+.log-reg-input{
+    border:0;
+    padding:10px 20px;
+    font-family:Arial, sans-serif;
+    font-size:16px;
+    text-transform:uppercase;
+    font-weight:bold;
+    color:#7EC2C2;
+    cursor:pointer;
+    background-color: white;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0px 2px 2px -2px rgba(0,0,0,0.6);
+    -webkit-box-shadow: 0px 2px 2px -2px rgba(0,0,0,0.6);
+    -moz-box-shadow: 0px 2px 2px -2px rgba(0,0,0,0.6);
+}
+
 .favo-top{
     margin-top: 40px;
     font-size: 24px;
@@ -66,6 +99,7 @@ nav .square_btn:active {
   transform: translateY(2px);
 }
 
+
 body {
     background-color: #FFF4E1;
 }
@@ -121,9 +155,10 @@ footer{
     width: 100%;
     padding: 20px 0px;
 }
-
-
-
+.about-site{
+    color: #E67A7A;
+    font-weight: bold;
+}
 
 .favo-btn {
     display       : inline-block;
@@ -154,6 +189,9 @@ background    : #ffffff;     /* 文字色     */
 }
 
 .del-botton {
+    bottom: 50px;
+    left: auto;
+    right: 50px;
     display       : inline-block;
     font-size     : 16pt;        /* 文字サイズ */
     text-align    : center;      /* 文字位置   */
@@ -220,6 +258,7 @@ background    : #ffffff;     /* 文字色     */
 	-webkit-transition: 0.25s all ease;
 	        transition: 0.25s all ease;
 }
+
 
 
 

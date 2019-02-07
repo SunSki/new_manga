@@ -2,9 +2,12 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>お気に入り削除</title>
+    <link rel="stylesheet" type="text/css" href="reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="manga_style.css">
+    <link rel="stylesheet" type="text/css" href="manga-style.css">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <?php
         //接続用パラメータの設定
         $host = 'localhost';
@@ -25,8 +28,9 @@
             $resultShow = $mysqli->query($sql);
             if($resultShow->num_rows > 0){
                 echo"<div class='container'>";
+                echo"<div class='h3 mt-5'>削除する作品を選択</div>";
                 echo"<form method='post' action='auth.php'>";
-                    echo "<div class='cp_ipcheck'>";
+                    echo "<div class='cp_ipcheck mb-5'>";
                         foreach($json as $item){//jsonを巡回
                             $jsonTitle = $item->title;
                             $resultShow = $mysqli->query($sql);
@@ -45,7 +49,7 @@
                             $resultShow->close();
                         }
                     echo "</div>";
-                echo "<input type='submit' value='お気に入りを削除' class='del-botton mt-3'>";
+                echo "<input type='submit' value='お気に入りを削除' class='del-botton fixed-bottom'>";
                 echo"</form>";
                 echo"</div>";
             }else{
@@ -97,7 +101,6 @@
 </header> -->
 
 <body>
-    
     <div class='top pt-2 pb-2'>
         <nav class="navbar justify-content-between sticky-top">
             <div class="logo ml-4">
@@ -118,12 +121,12 @@
         if(state == 0){
             $name = $_SESSION['name'];
             show($mysqli,$name);
-        }else{
+        }else{ 
             echo "<div>ログインしていません。</div>";
-
         }
-        
     ?>
+
+
 
 </body>
 
