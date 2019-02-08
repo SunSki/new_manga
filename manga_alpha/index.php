@@ -150,6 +150,10 @@
             <a href='about.html' class="about-site">このサイトについて</a>
         </div>
     </footer>
+
+    <?php
+        require('php/footer.php');
+    ?>
 </body>
 
 </html>

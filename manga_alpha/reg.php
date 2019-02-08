@@ -20,7 +20,7 @@
     <?php
         require('php/header.php');
     ?>
-    
+
     <div id="main">
         <?php
             //入力データの受取
@@ -50,7 +50,9 @@
             echo"</div>";
         ?>
     </div>
-
+    <?php
+        require('php/footer-fix.php');
+    ?>
 </body>
 
 <?php

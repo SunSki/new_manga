@@ -39,6 +39,10 @@
                         <input type="submit" value="Registration" class="log-reg-input mt-3">
                     </form>
                 </div>
+
+                <div>
+                    <div>初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
+                </div>
                 <!-- <?php
                     $sql = "select * from users";
                     $result = $mysqli->query($sql);
@@ -53,17 +57,15 @@
                         echo "なし";
                     }
                 ?> -->
+
             </div>
             <div class="col-sm-2"></div>
         </div>
     </div>
 
-    <footer class="fixed-bottom" id="footer">
-        <div class="container">
-            <a href='about.html' class="about-site">このサイトについて</a>
-        </div>
-    </footer>
-
+    <?php
+        require('php/footer-fix.php');
+    ?>
 </body>
 
 <?php

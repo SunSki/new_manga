@@ -267,27 +267,30 @@
         <?php
             if($state == 0){
                 userShow($name,$mysqli);
-            }elseif($state == 1){
+            }
+            elseif($state == 1){
                 echo "<div class='container'>";
                     echo "<div>ユーザー名が存在しません</div>";
                     echo "<a href='log-reg.php'>ログイン&登録ページへ</a>";
                 echo "</div>";
-            }elseif($state == 2){
+                require('php/footer-fix.php');
+            }
+            elseif($state == 2){
                 userShow($name,$mysqli);
-            }else{
+            }
+            else{
                 echo "<div class='container'>";
                     echo "<div>不正なアクセスです。</div>";
                     echo "<a href='log-reg.php'>ログイン&登録ページへ</a>";
                 echo "</div>";
+                require('php/footer-fix.php');
             }
         ?>
     </div>
     
-    <footer id="footer">
-        <div class="container">
-            <a href='about.html' class="about-site">このサイトについて</a>
-        </div>
-    </footer>
+    <?php
+        require('php/footer.php');
+    ?>
 
 </body>
 
