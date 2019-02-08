@@ -23,6 +23,15 @@ api.config['JSON_AS_ASCII'] = False
 global tonari_res
 global plus_res
 global young_res
+t_path = '/Applications/MAMP/htdocs/new_manga/json/get_tonari_sample.json'
+p_path = '/Applications/MAMP/htdocs/new_manga/json/get_plus_sample.json'
+y_path = '/Applications/MAMP/htdocs/new_manga/json/get_young_sample.json'
+with open(t_path) as f:
+    tonari_res = json.load(f)
+with open(p_path) as f:
+    plus_res = json.load(f)
+with open(y_path) as f:
+    young_res = json.load(f)
 
 site_url = {'plus': 'https://shonenjumpplus.com/series',
             'tonari': 'https://tonarinoyj.jp/series',
@@ -229,11 +238,4 @@ def not_found(error):
 # ファイルをスクリプトとして実行した際に
 # ホスト0.0.0.0, ポート3001番でサーバーを起動
 if __name__ == '__main__':
-    with api.app_context():  # global変数使うため　flask用
-        plus_res = jampplusGet()
-    with api.app_context():
-        tonari_res = tonariGet()
-    with api.app_context():
-        young_res = youngGet()
-
     api.run(host='0.0.0.0', port=3001)
