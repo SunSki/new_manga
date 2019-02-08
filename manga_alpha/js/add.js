@@ -1,3 +1,4 @@
+//load:全ての読み込みが完了したら実行される
 $(window).on("load", function () {
     offsetTop = $('h4').offset().top;
 });

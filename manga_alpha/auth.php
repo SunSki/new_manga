@@ -83,64 +83,66 @@
             $sql = "select * from favo where name = '$name'";
             $resultShow = $mysqli->query($sql);
 
-            echo "<div class='container pb-2 manga-list'>";
+            echo "<div class='container pb-2'>";
                 //お気に入り一覧を表示
                 if($resultShow->num_rows > 0){
-                    echo "<div><a href='auth.php'><div class='favo-top mb-4'>お気に入り一覧</div></a></div>";
-                    foreach($json as $item){//jsonを巡回
-                        $jsonTitle = $item->title;
-                        $img = $item->img;
-                        $resultShow = $mysqli->query($sql);
-                        while ($row = $resultShow->fetch_assoc()){//データベースを巡回
-                            $title = $row["title"];
-                            if($title==$jsonTitle){
-                                $link = $item->link;
-                                $date = $item->date;
-                                $site = $item->site;
-                                $site = siteShow($site);
-                                $title = $item->title;
-                                $detail = $item->detail;
-                                if($date_now != $date){
-                                    if($date_now != ''){
-                                        echo "</div><hr>";
+                    echo "<div class='favo-top mb-4'><a href='auth.php'>お気に入り一覧</a></div>";
+                    echo "<div class='manga-list'>";
+                        foreach($json as $item){//jsonを巡回
+                            $jsonTitle = $item->title;
+                            $img = $item->img;
+                            $resultShow = $mysqli->query($sql);
+                            while ($row = $resultShow->fetch_assoc()){//データベースを巡回
+                                $title = $row["title"];
+                                if($title==$jsonTitle){
+                                    $link = $item->link;
+                                    $date = $item->date;
+                                    $site = $item->site;
+                                    $site = siteShow($site);
+                                    $title = $item->title;
+                                    $detail = $item->detail;
+                                    if($date_now != $date){
+                                        if($date_now != ''){
+                                            echo "</div><hr>";
+                                        }
+                                        $ago = day_diff($today,$date);
+                                        if($ago!=0){
+                                            echo "<div class='ago'>${ago}日前</div>";
+                                        }else{
+                                            echo "<div class='ago'>本日更新</div>";
+                                        }
+                                        echo "<div class='split-date'>$date</div>";
+                                        echo "<div class='row'>";
                                     }
-                                    $ago = day_diff($today,$date);
-                                    if($ago!=0){
-                                        echo "<div class='ago'>${ago}日前</div>";
-                                    }else{
-                                        echo "<div class='ago'>本日更新</div>";
-                                    }
-                                    echo "<div class='split-date'>$date</div>";
-                                    echo "<div class='row'>";
-                                }
-                                $date_now = $date;
+                                    $date_now = $date;
 
-                                echo"<div class='col-sm-4'>";
-                                    echo "<div class='container'>";
-                                        echo "<a href='${link}' target='_blank'>";
-                                            echo "<div class='row work-list pt-1 pb-1 mb-1 mt-1'>";
-                                                echo "<div><img src='${img}' class='my-manga-img'></div>";
-                                                //ヤングエースの時だけタイトル名を追加する
-                                                if($site == 'ヤングエース'){
-                                                    echo "<div class='title'>${title}</div>";
-                                                }
-                                                echo "<div class='title'>${detail}</div>";
-                                                //echo "<div class='date'>${date}</div>";
-                                                echo "<div class='site'>${site}</div>";
-                                            echo "</div>";
-                                        echo"</a>";
-                                    echo "</div>";
-                                echo"</div>";
-                                break;
+                                    echo"<div class='col-sm-4'>";
+                                        echo "<div class='container'>";
+                                            echo "<a href='${link}' target='_blank'>";
+                                                echo "<div class='row work-list pt-1 pb-1 mb-1 mt-1'>";
+                                                    echo "<div><img src='${img}' class='my-manga-img'></div>";
+                                                    //ヤングエースの時だけタイトル名を追加する
+                                                    if($site == 'ヤングエース'){
+                                                        echo "<div class='title'>${title}</div>";
+                                                    }
+                                                    echo "<div class='title'>${detail}</div>";
+                                                    //echo "<div class='date'>${date}</div>";
+                                                    echo "<div class='site'>${site}</div>";
+                                                echo "</div>";
+                                            echo"</a>";
+                                        echo "</div>";
+                                    echo"</div>";
+                                    break;
+                                }
                             }
+                            $resultShow->close();    
                         }
-                        $resultShow->close();    
-                    }
                     echo "</div>";
-                    echo "<hr>";
-                    echo "<div><a href='remove_favo.php' class='del-btn'>お気に入り削除ページ</a></div>";
-                }
             echo "</div>";
+            echo "<hr>";
+            echo "<div><a href='remove_favo.php' class='del-btn'>お気に入り削除ページ</a></div>";
+            }
+        echo "</div>";
         }
         
         function removeFavo($mysqli){

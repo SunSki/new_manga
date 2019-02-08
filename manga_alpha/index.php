@@ -36,7 +36,7 @@
             // 戻り値
             return $daydiff;
         }
-
+        //$modeはタイトルを入れるかどうか
         function manga_show($res,$mode){
             $today = date("Y/m/d");
             $date_now ='';
@@ -46,31 +46,33 @@
                 $date = $item->date;
                 $img = $item->img;
                 $detail = $item->detail;
-                if ($date_now != $date){
-                    echo "<hr>";
-                    $ago = day_diff($today,$date);
-                    if($ago!=0){
-                        echo "<div class='ago'>${ago}日前</div>";
-                    }else{
-                        echo "<div class='ago'>本日更新</div>";
-                    }
-                    
-                    echo "<div class='split-date'>$date</div>";
-                    $week = week($date);
-                    echo "<div class='split-date'>$week</div>";
-                }
-                $date_now = $date;
-                echo "<div class='container'>";
-                echo "<a href='${link}'>";
-                    echo "<div class='row work-list pt-1 pb-1 mb-1 mt-1'>";
-                        echo "<div><img src='${img}' class='manga-img'></div>";
-                        if($mode == "title"){
-                            echo "<div class='title'>${title}</div>";
+                echo "<div ml-1>";
+                    if ($date_now != $date){
+                        echo "<hr>";
+                        $ago = day_diff($today,$date);
+                        if($ago!=0){
+                            echo "<div class='ago'>${ago}日前</div>";
+                        }else{
+                            echo "<div class='ago'>本日更新</div>";
                         }
-                        echo "<div class='title'>${detail}</div>";
-                        //echo "<div class='date'>${date}</div>";
+                        
+                        echo "<div class='split-date'>$date</div>";
+                        $week = week($date);
+                        echo "<div class='split-date'>$week</div>";
+                    }
+                    $date_now = $date;
+                    echo "<div class='container'>";
+                    echo "<a href='${link}'>";
+                        echo "<div class='row work-list pt-1 pb-1 mb-1 mt-1'>";
+                            echo "<div><img src='${img}' class='manga-img'></div>";
+                            if($mode == "title"){
+                                echo "<div class='title'>${title}</div>";
+                            }
+                            echo "<div class='title'>${detail}</div>";
+                            //echo "<div class='date'>${date}</div>";
+                        echo "</div>";
+                    echo"</a>";
                     echo "</div>";
-                echo"</a>";
                 echo "</div>";
             }
         }
@@ -132,7 +134,7 @@
             <div class="col-md-4 manga-list">
                 <?php
                     //echo count($res_young)."作品";
-                    echo"<div class='young_list'>";
+                    echo"<div>";
                     manga_show($res_young,'title');
                     echo"</div>"; 
                 ?>

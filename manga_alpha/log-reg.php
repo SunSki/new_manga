@@ -24,7 +24,7 @@
         <div class="row mt-5">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <div class="mb-5 p-5 shadow-sm">
+                <div class="mb-5 p-5 shadow log-reg-box">
                     <form action="auth.php" method="post">
                         <h3>ログイン</h3>
                         <input type="text" name="login" class="input">
@@ -32,7 +32,7 @@
                     </form>
                 </div>
                 
-                <div class="mb-5 p-5 shadow-sm">
+                <div class="mb-5 p-5 shadow log-reg-box">
                     <form action="reg.php" method="post">
                         <h3>登録</h3>
                         <input type="text" name="reg" class="input">
