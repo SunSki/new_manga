@@ -20,7 +20,7 @@
     <?php
         require('php/header.php');
     ?>
-    <div>なんかを表示</div>
+    
     <div id="main">
         <?php
             //入力データの受取

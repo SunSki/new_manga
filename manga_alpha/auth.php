@@ -83,7 +83,7 @@
             $sql = "select * from favo where name = '$name'";
             $resultShow = $mysqli->query($sql);
 
-            echo "<div class='container pb-2'>";
+            echo "<div class='container pb-2 manga-list'>";
                 //お気に入り一覧を表示
                 if($resultShow->num_rows > 0){
                     echo "<div><a href='auth.php'><div class='favo-top mb-4'>お気に入り一覧</div></a></div>";

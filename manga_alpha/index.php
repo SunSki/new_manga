@@ -89,7 +89,7 @@
         require('php/header.php');
     ?>
 
-    <nav class="navbar justify-content-around sticky-top down">
+    <nav class="navbar justify-content-around sticky-top down" id="site-top">
         <div class="container logo_head pt-2">
             <?php
                 //プラス
@@ -100,7 +100,6 @@
                 echo"<div class='tonari'>";
                 logo("img/tonari_60.png","https://tonarinoyj.jp/series");
                 echo"</div>";
-                
             ?>
             <hr>
 
@@ -116,27 +115,26 @@
 
     <div class="container" id="main">
         <div class="row">
-            <div class="col-md-4">
+            <div class="col-md-4 manga-list">
                 <?php
                     //echo count($res_plus)."作品";
                     manga_show($res_plus,'none');
                 ?>
                 <hr>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 manga-list">
                 <?php
                     //echo count($res_tonari)."作品";
                     manga_show($res_tonari,'none');
                 ?>
                 <hr>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-4 manga-list">
                 <?php
                     //echo count($res_young)."作品";
                     echo"<div class='young_list'>";
                     manga_show($res_young,'title');
-                    echo"</div>";
-                    
+                    echo"</div>"; 
                 ?>
                 <hr>
             </div>
