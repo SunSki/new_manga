@@ -1,6 +1,9 @@
+$(window).on("load", function () {
+    offsetTop = $('h4').offset().top;
+});
+
 $(function () {
     var appear = false;
-    var offsetTop = $('h4').offset().top;
     var pagetop = $('#add');
     $(window).scroll(function () {
         if ($(this).scrollTop() > offsetTop - 100) {
@@ -8,14 +11,14 @@ $(function () {
                 appear = true;
                 pagetop.stop().animate({
                     'bottom': '50px'
-                }, 100); //0.3秒かけて現れる
+                }, 100);
             }
         } else {
             if (appear) {
                 appear = false;
                 pagetop.stop().animate({
-                    'bottom': '-70px' //右から-50pxの位置に
-                }, 100); //0.3秒かけて隠れる
+                    'bottom': '-70px'
+                }, 100);
             }
         }
     });

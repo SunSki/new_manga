@@ -7,16 +7,13 @@ $('head').append(
 $(window).on("load", function () {
     $('#main').fadeIn(fadetime);
     $('#footer').fadeIn(fadetime);
-});
-
-
-$(window).on('load', function () {
     $('body').removeClass('fadeout');
 });
-var jump = ":not([href^='https://shonenjumpplus.com/'])";
-var tonari = ":not([href^='https://tonarinoyj.jp/'])";
-var young = ":not([href^='https://web-ace.jp/'])";
+
 $(function () {
+    var jump = ":not([href^='https://shonenjumpplus.com/'])";
+    var tonari = ":not([href^='https://tonarinoyj.jp/'])";
+    var young = ":not([href^='https://web-ace.jp/'])";
     // ハッシュリンク(#)と別ウィンドウでページを開く場合はスルー
     $(`a:not([href^="#"]):not([target])${jump}${tonari}${young}`).on('click', function (e) {
         e.preventDefault(); // ナビゲートをキャンセル
@@ -26,9 +23,10 @@ $(function () {
             $('#site-top').fadeOut(fadetime);
             $('#footer').fadeOut(fadetime);
             setTimeout(function () {
-                window.location = url;  // 0.8秒後に取得したURLに遷移
+                window.location = url;
             }, fadetime);
         }
         return false;
     });
 });
+

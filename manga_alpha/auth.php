@@ -10,8 +10,8 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="js/up.js"></script>
-    <script src="js/add.js"></script>
     <script src="js/fade.js"></script>
+    <script src="js/add.js"></script>
     <?php
         date_default_timezone_set('Asia/Tokyo');
 
@@ -208,7 +208,6 @@
                         favo_input($res_young,$mysqli);
                     echo "</div>";
                 echo "</div>";
-                echo "<div class='text-center'><input type='submit' value='お気に入りに追加' id='add' class='favo-btn '></div>";
                 echo"</div>";            
             echo"</form>";
         
@@ -281,8 +280,6 @@
             }
         ?>
     </div>
-
-    <div id="page_top"><a href="#"></a></div>
     
     <footer id="footer">
         <div class="container">
@@ -291,6 +288,9 @@
     </footer>
 
 </body>
+
+<div class='text-center'><input type='submit' value='お気に入りに追加' id='add' class='favo-btn '></div>
+<div id="page_top"><a href="#"></a></div>
 
 <?php
     $mysqli->close();
