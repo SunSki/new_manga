@@ -9,64 +9,44 @@
     <link rel="stylesheet" type="text/css" href="manga-style.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <?php
-        //接続用パラメータの設定
-        $host = 'localhost'; //データベースが動作するホスト
-        $user = 'root'; //ユーザ名（各自が設定）
-        $pass = 'root'; //パスワード（各自が設定）
-        $dbname = 'manga_alpha';//データベース名（各自が設定）
-
-        // mysqliクラスのオブジェクトを作成
-        $mysqli = new mysqli($host,$user,$pass,$dbname);
-            if ($mysqli->connect_error) { //接続エラーになった場合
-            echo $mysqli->connect_error; //エラーの内容を表示
-            exit();//終了
-        } else {
-            //echo "You are connected to the DB successfully.<br>"; //正しく接続できたことを確認
-            $mysqli->set_charset("utf8"); //文字コードを設定
-        }
+        require('db-con.php')
     ?>
 </head>
 
 <body>
-    <div class='top pt-2 pb-2'>
-        <nav class="navbar justify-content-between sticky-top">
-            <div class="logo ml-4">
-                    <a href="index.php">新着WEBマンガ</a>
-            </div>
-            <div class="text-right mr-4">
-                <a href="auth.php" class="mypage mr-3">Myページ</a>
-                <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
-            </div>
-        </nav>
-    </div>
-
     <?php
-        //入力データの受取
-        echo"<div class='container'>";
-        if(!empty($_POST["reg"])){
-            //POSTされた変数の受取
-            $name = $_POST["reg"];
-            //ユーザ名が既に使用されているかのチェック
-            $sql = "select * from users where name = '$name'";
-            $result = $mysqli->query($sql); //SQL文の実行
-            if( $result->num_rows == 0){
-                $sql = "insert into users (name) values ('$name')";
+        require('header');
+    ?>
+
+    <div id="main">
+        <?php
+            //入力データの受取
+            echo"<div class='container'>";
+            if(!empty($_POST["reg"])){
+                //POSTされた変数の受取
+                $name = $_POST["reg"];
+                //ユーザ名が既に使用されているかのチェック
+                $sql = "select * from users where name = '$name'";
                 $result = $mysqli->query($sql); //SQL文の実行
-                echo "${name}で登録しました！<br>";
-                session_start();
-                $_SESSION['name'] = $name;
-                echo "<a href='auth.php'>ユーザーページへ行く</a>";
+                if( $result->num_rows == 0){
+                    $sql = "insert into users (name) values ('$name')";
+                    $result = $mysqli->query($sql); //SQL文の実行
+                    echo "${name}で登録しました！<br>";
+                    session_start();
+                    $_SESSION['name'] = $name;
+                    echo "<a href='auth.php'>ユーザーページへ行く</a>";
+                }else{
+                    echo "<div>${name}はすでに登録されています</div>";
+                    echo "<a href='log-reg.php'>ログイン&登録ページへ戻る</a>";
+                }
+                $result->close(); // 結果セットを閉じる
             }else{
-                echo "<div>${name}はすでに登録されています</div>";
+                echo"<div>登録する名前を入力してください</div>";
                 echo "<a href='log-reg.php'>ログイン&登録ページへ戻る</a>";
             }
-            $result->close(); // 結果セットを閉じる
-        }else{
-            echo"<div>登録する名前を入力してください</div>";
-            echo "<a href='log-reg.php'>ログイン&登録ページへ戻る</a>";
-        }
-        echo"</div>";
-    ?>
+            echo"</div>";
+        ?>
+    </div>
 
 </body>
 

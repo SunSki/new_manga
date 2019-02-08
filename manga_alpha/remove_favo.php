@@ -9,18 +9,7 @@
     <link rel="stylesheet" type="text/css" href="manga-style.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <?php
-        //接続用パラメータの設定
-        $host = 'localhost';
-        $user = 'root';
-        $pass = 'root'; 
-        $dbname = 'manga_alpha';
-        $mysqli = new mysqli($host,$user,$pass,$dbname);
-        if ($mysqli->connect_error) { 
-            echo $mysqli->connect_error;
-            exit();
-            } else {
-                $mysqli->set_charset("utf8");
-            }
+        require('db-con.php');
 
         function removeShow($mysqli, $json){
             $name = $_SESSION['name'];
@@ -60,13 +49,8 @@
             }
         }
 
-        function jsonDecode($link){
-            $json = file_get_contents($link);
-            return json_decode($json);
-        }
-
         function show($mysqli,$name){   
-            $res_all = jsonDecode('http://localhost:3001/get_all');
+            require('get_json.php');
             removeShow($mysqli,$res_all);
         }
 
@@ -78,30 +62,11 @@
         } else {
             $state = 1;
         }
-
     ?>
 </head>
 
-<!-- <header>
-    <div class="container">
-        <div class="row">
-            <div class="col-md logo">
-                <a href="index.php">新着WEBマンガ</a>
-            </div>
-            <div class="col-md text-right">
-                <?php
-                    if($state == 0){
-                        echo"<a href='auth.php' class='mypage mr-3'>${name}のページ</a>";
-                    }
-                ?>
-                <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
-            </div>
-        </div>
-    </div>
-</header> -->
-
 <body>
-    <div class='top pt-2 pb-2'>
+    <div class='top pt-2 pb-2' id="header">
         <nav class="navbar justify-content-between sticky-top">
             <div class="logo ml-4">
                     <a href="index.php">新着WEBマンガ</a>
@@ -116,18 +81,17 @@
             </div>
         </nav>
     </div>
-
-    <?php
-        if(state == 0){
-            $name = $_SESSION['name'];
-            show($mysqli,$name);
-        }else{ 
-            echo "<div>ログインしていません。</div>";
-        }
-    ?>
-
-
-
+    
+    <div id="main">
+        <?php
+            if(state == 0){
+                $name = $_SESSION['name'];
+                show($mysqli,$name);
+            }else{ 
+                echo "<div>ログインしていません。</div>";
+            }
+        ?>
+    </div>
 </body>
 
 <?php

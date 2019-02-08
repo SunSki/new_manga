@@ -14,18 +14,7 @@
     <?php
         date_default_timezone_set('Asia/Tokyo');
 
-        //接続用パラメータの設定
-        $host = 'localhost';
-        $user = 'root';
-        $pass = 'root';
-        $dbname = 'manga_alpha';
-        $mysqli = new mysqli($host,$user,$pass,$dbname);
-        if ($mysqli->connect_error) {
-            echo $mysqli->connect_error; 
-            exit();
-        } else {
-            $mysqli->set_charset("utf8");
-        }
+        require('db-con.php');
 
         ini_set('display_errors', 1);
 
@@ -165,12 +154,6 @@
             }
         }
 
-        #jsonからphp用のオブジェクトに変換
-        function jsonDecode($link){
-            $json = file_get_contents($link);
-            return json_decode($json);
-        }
-
         function favo_input($res,$mysqli){
             $name = $_SESSION['name'];
             $site = $res[0]->site;
@@ -201,10 +184,7 @@
         }
 
         function userShow($name,$mysqli){
-            $res_plus = jsonDecode('http://localhost:3001/get_jampplus');
-            $res_tonari = jsonDecode('http://localhost:3001/get_tonari');
-            $res_young = jsonDecode('http://localhost:3001/get_young');
-            $res_all = jsonDecode('http://localhost:3001/get_all');
+            require('json_get.php');
 
             removeFavo($mysqli);
             addFavo($mysqli);
@@ -264,7 +244,7 @@
 </head>
 
 <body>
-    <div class='top pt-2 pb-2'>
+    <div class='top pt-2 pb-2' id="header">
         <nav class="navbar justify-content-between sticky-top">
             <div class="logo ml-4">
                     <a href="index.php">新着WEBマンガ</a>
@@ -281,27 +261,29 @@
         </nav>
     </div>
 
-    <?php
-        if($state == 0){
-            userShow($name,$mysqli);
-        }elseif($state == 1){
-            echo "<div class='container'>";
-                echo "<div>ユーザー名が存在しません</div>";
-                echo "<a href='log-reg.php'>ログイン&登録ページへ</a>";
-            echo "</div>";
-        }elseif($state == 2){
-            userShow($name,$mysqli);
-        }else{
-            echo "<div class='container'>";
-                echo "<div>不正なアクセスです。</div>";
-                echo "<a href='log-reg.php'>ログイン&登録ページへ</a>";
-            echo "</div>";
-        }
-    ?>
+    <div id="main">
+        <?php
+            if($state == 0){
+                userShow($name,$mysqli);
+            }elseif($state == 1){
+                echo "<div class='container'>";
+                    echo "<div>ユーザー名が存在しません</div>";
+                    echo "<a href='log-reg.php'>ログイン&登録ページへ</a>";
+                echo "</div>";
+            }elseif($state == 2){
+                userShow($name,$mysqli);
+            }else{
+                echo "<div class='container'>";
+                    echo "<div>不正なアクセスです。</div>";
+                    echo "<a href='log-reg.php'>ログイン&登録ページへ</a>";
+                echo "</div>";
+            }
+        ?>
+    </div>
 
     <div id="page_top"><a href="#"></a></div>
     
-    <footer>
+    <footer id="footer">
         <div class="container">
             <a href='about.html' class="about-site">このサイトについて</a>
         </div>

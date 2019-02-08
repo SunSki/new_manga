@@ -21,12 +21,6 @@
             echo $week[$w] . "曜日";
         }
 
-        #jsonからphp用のオブジェクトに変換
-        function jsonDecode($link){
-            $json = file_get_contents($link);
-            return json_decode($json);
-        }
-
         function day_diff($date1, $date2) {
             // 日付をUNIXタイムスタンプに変換
             $timestamp1 = strtotime($date1);
@@ -84,25 +78,15 @@
             echo "<p><a href='${url}'><img src='${img}' height='30px'></a></p>";
         }
 
-        $res_plus = jsonDecode('http://localhost:3001/get_jampplus');
-        $res_tonari = jsonDecode('http://localhost:3001/get_tonari');
-        $res_young = jsonDecode('http://localhost:3001/get_young');
+        require('json_get.php');
     ?>
 </head>
 
 <body>
 
-    <div class='top pt-2 pb-2'>
-    <nav class="navbar justify-content-between sticky-top">
-        <div class="logo ml-4">
-                <a href="index.php">新着WEBマンガ</a>
-        </div>
-        <div class="text-right mr-4">
-            <a href="auth.php" class="mypage mr-3">Myページ</a>
-            <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
-        </div>
-    </nav>
-    </div>
+    <?php
+        require('header.php');
+    ?>
 
     <nav class="navbar justify-content-around sticky-top down">
         <div class="container logo_head pt-2">
@@ -129,7 +113,7 @@
         </div>
     </nav>
 
-    <div class="container">
+    <div class="container" id="main">
         <div class="row">
             <div class="col-md-4">
                 <?php
@@ -160,7 +144,7 @@
 
     <div id="page_top"><a href="#"></a></div>
 
-    <footer>
+    <footer id="footer">
         <div class="container">
             <a href='about.html' class="about-site">このサイトについて</a>
         </div>

@@ -10,38 +10,16 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" >
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <?php
-        //接続用パラメータの設定
-        $host = 'localhost'; //データベースが動作するホスト
-        $user = 'root'; //ユーザ名（各自が設定）
-        $pass = 'root'; //パスワード（各自が設定）
-        $dbname = 'manga_alpha';//データベース名（各自が設定）
-        // mysqliクラスのオブジェクトを作成
-        $mysqli = new mysqli($host,$user,$pass,$dbname);
-        if ($mysqli->connect_error) { //接続エラーになった場合
-        echo $mysqli->connect_error; //エラーの内容を表示
-        exit();//終了
-        } else {
-        //echo "You are connected to the DB successfully.<br>"; //正しく接続できたことを確認
-        $mysqli->set_charset("utf8"); //文字コードを設定
-        }
+        require('db-con.php');
     ?>
 </head>
 
 <body>
+    <?php
+        require('header.php');
+    ?>
 
-    <div class='top pt-2 pb-2'>
-        <nav class="navbar justify-content-between sticky-top">
-            <div class="logo ml-4">
-                    <a href="index.php">新着WEBマンガ</a>
-            </div>
-            <div class="text-right mr-4">
-                <a href="auth.php" class="mypage mr-3">Myページ</a>
-                <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
-            </div>
-        </nav>
-    </div>
-
-    <div class="container">
+    <div class="container" id="main">
         <div class="row mt-5">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
@@ -79,7 +57,7 @@
         </div>
     </div>
 
-    <footer class="fixed-bottom">
+    <footer class="fixed-bottom" id="footer">
         <div class="container">
             <a href='about.html' class="about-site">このサイトについて</a>
         </div>
