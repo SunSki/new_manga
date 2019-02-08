@@ -168,6 +168,21 @@ body {
 }
 
 
+.not-found-btn a{
+    padding: 20px;
+    background-color: white;
+    color: #7ec2c2;
+    font-weight: bold;
+    border: solid;
+    border-color: #7EC2C2;
+    border-radius: 10px;
+}
+.not-found-btn a:hover{
+    background-color: #7ec2c2;
+    color: white;
+    border-color: white;
+}
+
 
 footer{
     background-color: #9DDCDC;

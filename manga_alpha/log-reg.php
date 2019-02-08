@@ -41,8 +41,9 @@
                 </div>
 
                 <div>
-                    <div>初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
+                    <div class="h5">初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
                 </div>
+                
                 <!-- <?php
                     $sql = "select * from users";
                     $result = $mysqli->query($sql);

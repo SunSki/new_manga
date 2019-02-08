@@ -265,23 +265,25 @@
 
     <div id="main">
         <?php
-            if($state == 0){
+            if($state == 0){//ログイン
                 userShow($name,$mysqli);
             }
-            elseif($state == 1){
-                echo "<div class='container'>";
-                    echo "<div>ユーザー名が存在しません</div>";
-                    echo "<a href='log-reg.php'>ログイン&登録ページへ</a>";
+            elseif($state == 1){//ユーザー名なし
+                echo "<div class='container text-center'>";
+                    echo "<div class='h2 mt-5 mb-3'>ユーザー名がありません</div>";
+                    echo "<div><img src='img/not-found.png' width='60%'></div>";
+                    echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
                 require('php/footer-fix.php');
             }
-            elseif($state == 2){
+            elseif($state == 2){//セッションあり
                 userShow($name,$mysqli);
             }
-            else{
-                echo "<div class='container'>";
-                    echo "<div>不正なアクセスです。</div>";
-                    echo "<a href='log-reg.php'>ログイン&登録ページへ</a>";
+            else{//ログインしてください
+                echo "<div class='container text-center'>";
+                    echo "<div class='h2 mt-5 mb-3'>ログインして下さい</div>";
+                    echo "<div><img src='img/not-found.png' width='60%'></div>";
+                    echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
                 require('php/footer-fix.php');
             }

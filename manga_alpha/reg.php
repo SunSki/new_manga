@@ -16,7 +16,6 @@
 </head>
 
 <body>
-
     <?php
         require('php/header.php');
     ?>
@@ -39,13 +38,20 @@
                     $_SESSION['name'] = $name;
                     echo "<a href='auth.php'>ユーザーページへ行く</a>";
                 }else{
-                    echo "<div>${name}はすでに登録されています</div>";
-                    echo "<a href='log-reg.php'>ログイン&登録ページへ戻る</a>";
+                    echo "<div class='container text-center'>";
+                        echo "<div class='h2 mt-5 mb-3'>その名前はすでに登録されています</div>";
+                        echo "<div><img src='img/not-found.png' width='60%'></div>";
+                        echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
+                    echo "</div>";
                 }
                 $result->close(); // 結果セットを閉じる
             }else{
-                echo"<div>登録する名前を入力してください</div>";
-                echo "<a href='log-reg.php'>ログイン&登録ページへ戻る</a>";
+                echo "<div class='container text-center'>";
+                    echo "<div class='h2 mt-5 mb-3'>名前を入力してください</div>";
+                    echo "<div><img src='img/not-found.png' width='60%'></div>";
+                    echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
+                echo "</div>";
+                require('php/footer-fix.php');
             }
             echo"</div>";
         ?>
