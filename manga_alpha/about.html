@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>新着WEBマンガ一覧</title>
-    <link rel="stylesheet" type="text/css" href="reset.css">
+    <link rel="stylesheet" type="text/css" href="css/reset.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
         integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="manga-style.css">
+    <link rel="stylesheet" type="text/css" href="css/manga-style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <style>
@@ -35,7 +35,7 @@
 </head>
 
 <body>
-    <div class="top pt-2 pb-2">
+    <div class="top pt-2 pb-2" id="header">
         <nav class="navbar justify-content-between sticky-top">
             <div class="logo ml-4">
                 <a href="index.php">新着WEBマンガ</a>
@@ -47,7 +47,7 @@
         </nav>
     </div>
 
-    <div class="container">
+    <div class="container" id="main">
         <div class="bg-light p-4 m-4 rounded">
             <div class="h2">新着WEBマンガとは？</div>
             <hr>
@@ -55,6 +55,7 @@
                 <div class="mb-1 h4">概要</div>
                 <ul class="ml-4">
                     <li>複数のWEBマンガサイトの新着マンガを、いい感じに読めるサービス</li>
+                    <li>30日以内に更新された作品を公開しています。</li>
                     <li>現在は
                         <span><a href="https://shonenjumpplus.com/series">少年ジャンプ+</a></span>、
                         <span><a href="https://tonarinoyj.jp/series">となりのヤングジャンプ</a></span>、
