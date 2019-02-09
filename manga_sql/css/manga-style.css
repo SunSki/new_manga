@@ -1,0 +1,402 @@
+@charset "UTF-8";
+
+/* 濃い緑：#7ec2c2 */
+/* 淡い緑：#9DDCDC */
+/* オレンジ：#E67A7A */
+/* ペール：#FFF4E1 */
+a {
+    text-decoration: none;
+    color: black;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.manga-list a:visited {
+    color: #9DDCDC;
+}
+
+.input {
+    padding: 10px;
+    font-size: 1.3em;
+    font-family: Arial, sans-serif;
+    color: #aaa;
+    background-color: white;
+    border: solid 1px #ccc;
+    margin: 0 0 10px;
+    width: 100%;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.input:focus {
+    border: solid 2px #E67A7A;
+}
+
+.log-reg-input {
+    border: 0;
+    padding: 10px 20px;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #7EC2C2;
+    cursor: pointer;
+    background-color: white;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.6);
+}
+
+.log-reg-box {
+    border-radius: 10px;
+}
+
+.favo-top {
+    margin-top: 40px;
+}
+
+.favo-top a {
+    margin-top: 40px;
+    font-size: 24px;
+    color: #7EC2C2;
+}
+
+@media screen and (max-width: 770px) {
+
+    .site-bar {
+        display: none;
+    }
+
+    .mypage-head {
+        margin-left: 30px;
+    }
+}
+
+
+.top {
+    background-color: #9DDCDC;
+}
+
+.down {
+    background-color: #FFF4E1;
+    box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.6);
+    -webkit-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.6);
+    -moz-box-shadow: 0px 2px 2px -2px rgba(0, 0, 0, 0.6);
+}
+
+nav .logo_head {
+    background-color: #FFF4E1;
+}
+
+nav .logo a {
+    color: #E67A7A;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+nav .logo a:hover {
+    color: #E67A7A;
+}
+
+nav .tonari {
+    margin-left: 40px;
+}
+
+nav .young {
+    margin-right: 70px;
+}
+
+nav .mypage {
+    color: white;
+    font-size: 18px;
+}
+
+nav .square_btn {
+    display: inline-block;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    background: #f7f7f7;
+    border-left: solid 6px #7EC2C2;
+    /*左線*/
+    color: #7EC2C2;
+    /*文字色*/
+    font-weight: bold;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+}
+
+nav .square_btn:hover {
+    color: #7EC2C2;
+    opacity: 0.8;
+}
+
+nav .square_btn:active {
+    box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
+    transform: translateY(2px);
+}
+
+
+body {
+    background-color: #FFF4E1;
+}
+
+.title {
+    font-size: 16px;
+}
+
+.date {
+    font-size: 12px;
+}
+
+.site {
+    font-size: 16px;
+}
+
+
+.manga-img {
+    width: 70%;
+}
+
+.my-manga-img {
+    width: 90%;
+}
+
+.work-list:hover {
+    color: black;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
+}
+
+.ago {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.split-date {
+    font-size: 18px;
+}
+
+.week {
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+#add {
+    position: fixed;
+    transform: translate(-50%, 0);
+    bottom: -100px;
+}
+
+.worksImg {
+    height: 24px;
+    margin-bottom: 12px;
+}
+
+
+.not-found-btn a {
+    padding: 20px;
+    background-color: white;
+    color: #7ec2c2;
+    font-weight: bold;
+    border: solid;
+    border-color: #7EC2C2;
+    border-radius: 10px;
+}
+
+.not-found-btn a:hover {
+    background-color: #7ec2c2;
+    color: white;
+    border-color: white;
+}
+
+
+footer {
+    background-color: #9DDCDC;
+    width: 100%;
+    padding: 20px 0px;
+}
+
+.about-site {
+    color: #E67A7A;
+    font-weight: bold;
+}
+
+
+
+.favo-btn {
+    display: inline-block;
+    font-size: 16pt;
+    /* 文字サイズ */
+    text-align: center;
+    /* 文字位置   */
+    cursor: pointer;
+    /* カーソル   */
+    padding: 20px 100px;
+    /* 余白       */
+    background: #7ec2c2;
+    /* 背景色     */
+    color: #ffffff;
+    /* 文字色     */
+    line-height: 1em;
+    /* 1行の高さ  */
+    transition: .3s;
+    /* なめらか変化 */
+    box-shadow: 4px 4px #666666;
+    /* 影の設定 */
+    border: 2px solid #7ec2c2;
+    /* 枠の指定 */
+}
+
+.favo-btn:hover {
+    box-shadow: none;
+    /* カーソル時の影消去 */
+    color: #7ec2c2;
+    /* 背景色     */
+    background: #ffffff;
+    /* 文字色     */
+}
+
+
+.del-btn {
+    font-size: 18px;
+    color: #7ec2c2;
+}
+
+.del-btn:hover {
+    color: #9DDCDC;
+}
+
+.del-botton {
+    bottom: 50px;
+    left: auto;
+    right: 50px;
+    display: inline-block;
+    font-size: 16pt;
+    /* 文字サイズ */
+    text-align: center;
+    /* 文字位置   */
+    cursor: pointer;
+    /* カーソル   */
+    padding: 15px 50px;
+    /* 余白       */
+    background: #7ec2c2;
+    /* 背景色     */
+    color: #ffffff;
+    /* 文字色     */
+    line-height: 1em;
+    /* 1行の高さ  */
+    transition: .3s;
+    /* なめらか変化 */
+    box-shadow: 4px 4px #666666;
+    /* 影の設定 */
+    border: 2px solid #7ec2c2;
+    /* 枠の指定 */
+}
+
+.del-botton:hover {
+    box-shadow: none;
+    /* カーソル時の影消去 */
+    color: #7ec2c2;
+    /* 背景色     */
+    background: #ffffff;
+    /* 文字色     */
+}
+
+
+.list_item a:hover {
+    color: #7EC2C2;
+}
+
+
+
+
+.cp_ipcheck input[type='checkbox'] {
+    position: absolute;
+    z-index: -1;
+    opacity: 0;
+}
+
+.cp_ipcheck label {
+    position: relative;
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 10px 0;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.cp_ipcheck label::before {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    content: ' ';
+    border: 2px solid #E67A7A;
+}
+
+.cp_ipcheck input[type='checkbox']+label::before {
+    border-radius: 4px;
+}
+
+.cp_ipcheck input[type='checkbox']:checked+label {
+    color: #ffffff;
+}
+
+.cp_ipcheck input[type='checkbox']:checked+label::before {
+    width: 100%;
+    height: 100%;
+    background: #E67A7A;
+}
+
+/* Transition */
+.cp_ipcheck label,
+.cp_ipcheck label::before {
+    -webkit-transition: 0.25s all ease;
+    transition: 0.25s all ease;
+}
+
+
+
+
+
+#page_top {
+    width: 80px;
+    height: 80px;
+    position: fixed;
+    right: -80px;
+    bottom: 50px;
+    background: #ef3f40;
+    opacity: 0.6;
+    border-radius: 50%;
+}
+
+#page_top a {
+    position: relative;
+    display: block;
+    width: 80px;
+    height: 80px;
+    text-decoration: none;
+}
+
+#page_top a::before {
+    font-family: FontAwesome;
+    content: '\f102';
+    font-size: 40px;
+    color: #fff;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    margin: auto;
+    text-align: center;
+}
