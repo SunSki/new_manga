@@ -3,15 +3,10 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>新着WEBマンガ一覧</title>
-    <link rel="stylesheet" type="text/css" href="css/reset.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
-        crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="css/manga-style.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
-        crossorigin="anonymous">
-    <script src="js/fade.js"></script>
+    <?php
+        require('php/head.php');
+    ?>
     <style>
         li {
             margin: 10px 0;
@@ -36,17 +31,9 @@
 </head>
 
 <body>
-    <div class="top pt-2 pb-2 mypage-head" id="header">
-        <nav class="navbar justify-content-between sticky-top">
-            <div class="logo ml-4">
-                <a href="index.php">新着WEBマンガ</a>
-            </div>
-            <div class="text-right mr-4">
-                <a href="auth.php" class="mypage mr-3">Myページ</a>
-                <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
-            </div>
-        </nav>
-    </div>
+    <?php
+        require('php/header.php');
+    ?>
 
     <div class="container" id="main">
         <div class="bg-light p-4 m-4 rounded">

@@ -67,7 +67,7 @@ a:hover {
     color: #7EC2C2;
 }
 
-@media screen and (max-width: 770px) {
+@media screen and (max-width: 750px) {
 
     .site-bar {
         display: none;

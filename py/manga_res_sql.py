@@ -13,9 +13,9 @@ from datetime import datetime
 
 import sqlite3
 conn = sqlite3.connect('manga-list.db')
+c = conn.cursor
 
 api = responder.API()
-
 
 site_url = {'plus': 'https://shonenjumpplus.com/series',
             'tonari': 'https://tonarinoyj.jp/series',

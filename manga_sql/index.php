@@ -141,12 +141,6 @@
 
     <div id="page_top"><a href="#"></a></div>
 
-    <footer id="footer">
-        <div class="container">
-            <a href='about.html' class="about-site">このサイトについて</a>
-        </div>
-    </footer>
-
     <?php
         require('php/footer.php');
     ?>
