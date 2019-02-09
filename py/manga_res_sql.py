@@ -1,4 +1,4 @@
-import responder
+# -*- coding: utf-8 -*-
 
 # スクレイピング用ライブラリ
 import requests
@@ -12,10 +12,6 @@ from time import sleep
 from datetime import datetime
 
 import sqlite3
-conn = sqlite3.connect('manga-list.db')
-c = conn.cursor
-
-api = responder.API()
 
 site_url = {'plus': 'https://shonenjumpplus.com/series',
             'tonari': 'https://tonarinoyj.jp/series',
@@ -59,8 +55,8 @@ def jampplusGet():
     json = []
     titles = []
 
-    # for a in title_a_list:  # 数の調整
-    for a in title_a_list[:5]:
+    for a in title_a_list:  # 数の調整
+        # for a in title_a_list[:4]:
         url = a
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -115,8 +111,8 @@ def tonariGet():
     links = soup.select('ul.daily-series-episode-link-list')
     pattern = 'https://tonarinoyj.jp/episode/\d+'
     i = 0
-    # for link in links:
-    for link in links[:5]:
+    for link in links:
+        # for link in links[:4]:
         results = re.findall(pattern, str(link))
         if len(results) > 1:
             response = requests.get(results[1])
@@ -166,8 +162,8 @@ def youngGet():
     for link in soup.select('ul.current > li > a'):
         link_list.append(path+link.get('href'))
 
-    # for a in link_list:
-    for a in link_list[:5]:
+    for a in link_list:
+        # for a in link_list[:4]:
         response = requests.get(a)
         soup = BeautifulSoup(response.text, 'html.parser')
         title = soup.select_one('div.credit > h1').text
@@ -190,45 +186,34 @@ def youngGet():
 # GETの実装
 
 
-@api.route('/get/plus')
-def get_jampplus(req, resp):
-    resp.headers = {"Content-Type": "application/json; charset=utf-8"}
-    resp.content = json.dumps(plus_res, ensure_ascii=False)
-
-
-@api.route('/get/tonari')
-def get_tonari(req, resp):
-    resp.headers = {"Content-Type": "application/json; charset=utf-8"}
-    resp.content = json.dumps(tonari_res, ensure_ascii=False)
-
-
-@api.route('/get/young')
-def get_young(req, resp):
-    resp.headers = {"Content-Type": "application/json; charset=utf-8"}
-    resp.content = json.dumps(young_res, ensure_ascii=False)
-
-
-@api.route('/get/all')
-def get_all(req, resp):
-    res = plus_res + tonari_res + young_res
-    res = sorted(res, key=lambda x: x['date'], reverse=True)
-    resp.headers = {"Content-Type": "application/json; charset=utf-8"}
-    resp.content = json.dumps(res, ensure_ascii=False)
-
-
-# @api.route("/hello/{who}")
-# def say_hello(req, resp, *, who):
-#     params = req.params.get("id", "")
-#     resp.headers["X-Pizza"] = "42"
-#     resp.status_code = 200
-#     resp.media = {
-#         "Hello": who,
-#         "param": params
-#     }
-
-
 if __name__ == '__main__':
+
+    # スクレイピング
     plus_res = jampplusGet()
     tonari_res = tonariGet()
     young_res = youngGet()
-    api.run()
+    res = plus_res + tonari_res + young_res
+    all_res = sorted(res, key=lambda x: x['date'], reverse=True)
+
+    plus = json.dumps(plus_res, ensure_ascii=False)
+    plus = plus.replace("'", "")
+    tonari = json.dumps(tonari_res, ensure_ascii=False)
+    tonari = tonari.replace("'", "")
+    young = json.dumps(young_res, ensure_ascii=False)
+    young = young.replace("'", "")
+    allRes = json.dumps(all_res, ensure_ascii=False)
+    allRes = allRes.replace("'", "")
+
+    conn = sqlite3.connect('manga-list.db')
+    c = conn.cursor()
+
+    c.executescript("INSERT INTO plus ('json') VALUES ('%s')" % plus)
+    c.executescript("INSERT INTO tonari ('json') VALUES ('%s')" % tonari)
+    c.executescript("INSERT INTO young ('json') VALUES ('%s')" % young)
+    c.executescript("INSERT INTO allManga ('json') VALUES ('%s')" % allRes)
+
+    conn.commit()
+    conn.close()
+
+    # resp.headers = {"Content-Type": "application/json; charset=utf-8"}
+    # resp.content = json.dumps(tonari_res, ensure_ascii=False)

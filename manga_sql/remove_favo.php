@@ -45,7 +45,7 @@
             }
         }
 
-        function show($mysqli,$name){   
+        function show($mysqli,$name){
             require('php/json_get.php');
             removeShow($mysqli,$res_all);
         }

@@ -13,10 +13,10 @@ try {
 	$pdo->beginTransaction ();
 
     // 選択 (プリペアドステートメント)
-    $plus_q = $pdo->query("SELECT MAX(json) FROM plus");
-    $tonari_q = $pdo->query("SELECT MAX(json) FROM tonari");
-    $young_q = $pdo->query("SELECT MAX(json) FROM young");
-    $all_q = $pdo->query("SELECT MAX(json) FROM allManga");
+    $plus_q = $pdo->query("SELECT json FROM plus ORDER BY id DESC LIMIT 1");
+    $tonari_q = $pdo->query("SELECT json FROM tonari ORDER BY id DESC LIMIT 1");
+    $young_q = $pdo->query("SELECT json FROM young ORDER BY id DESC LIMIT 1");
+    $all_q = $pdo->query("SELECT json FROM allManga ORDER BY id DESC LIMIT 1");
 
     $plus = $plus_q->fetchall();
     $tonari = $tonari_q->fetchall();
@@ -35,6 +35,7 @@ try {
     foreach($all as $row){
         $res_all = json_decode($row[0]);
     }
+    $pdo = null;
 
 } catch (Exception $e) {
 

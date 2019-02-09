@@ -182,7 +182,6 @@
 
         function userShow($name,$mysqli){
             require('php/json_get.php');
-
             removeFavo($mysqli);
             addFavo($mysqli);
 

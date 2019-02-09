@@ -76,13 +76,14 @@
             echo "<p><a href='${url}'><img src='${img}' height='30px'></a></p>";
         }
 
-        require('php/json_get.php');
+        
     ?>
 </head>
 
 <body>
 
     <?php
+        require("php/json_get.php");
         require('php/header.php');
     ?>
     <nav class="navbar justify-content-around sticky-top down site-bar" id="site-top">
@@ -115,21 +116,18 @@
         <div class="row">
             <div class="col-md-4 manga-list">
                 <?php
-                    //echo count($res_plus)."作品";
                     manga_show($res_plus,'none');
                 ?>
                 <hr>
             </div>
             <div class="col-md-4 manga-list">
                 <?php
-                    //echo count($res_tonari)."作品";
                     manga_show($res_tonari,'none');
                 ?>
                 <hr>
             </div>
             <div class="col-md-4 manga-list">
                 <?php
-                    //echo count($res_young)."作品";
                     echo"<div>";
                     manga_show($res_young,'title');
                     echo"</div>"; 
