@@ -204,7 +204,8 @@
                         favo_input($res_young,$mysqli);
                     echo "</div>";
                 echo "</div>";
-                echo"</div>";            
+                echo"</div>";
+                echo"<div class='text-center'><input type='submit' value='お気に入りに追加' id='add' class='favo-btn '></div>";            
             echo"</form>";
         
         }
@@ -290,7 +291,6 @@
 
 </body>
 
-<div class='text-center'><input type='submit' value='お気に入りに追加' id='add' class='favo-btn '></div>
 <div id="page_top"><a href="#"></a></div>
 
 <?php

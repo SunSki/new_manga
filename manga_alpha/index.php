@@ -85,8 +85,7 @@
     <?php
         require('php/header.php');
     ?>
-
-    <nav class="navbar justify-content-around sticky-top down" id="site-top">
+    <nav class="navbar justify-content-around sticky-top down site-bar" id="site-top">
         <div class="container logo_head pt-2">
             <?php
                 //プラス
@@ -109,6 +108,8 @@
             ?>
         </div>
     </nav>
+
+
 
     <div class="container" id="main">
         <div class="row">
