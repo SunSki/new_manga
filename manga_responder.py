@@ -1,5 +1,4 @@
-# 必要なモジュールの読み込み
-from flask import Flask, jsonify, abort, make_response
+import responder
 
 # スクレイピング用ライブラリ
 import requests
@@ -8,34 +7,15 @@ from bs4 import BeautifulSoup
 import json
 import collections as cl
 
-# 正規表現
-import re
-
+import re  # 正規表現
 from time import sleep
-
 from datetime import datetime
 
-import asyncio
+api = responder.API()
 
-# Flaskクラスのインスタンスを作成
-# __name__は現在のファイルのモジュール名
-api = Flask(__name__)
-api.config['JSON_AS_ASCII'] = False
-
-# データを突っ込む
 global tonari_res
 global plus_res
 global young_res
-t_path = '/Applications/MAMP/htdocs/new_manga/json/get_tonari_sample.json'
-p_path = '/Applications/MAMP/htdocs/new_manga/json/get_plus_sample.json'
-y_path = '/Applications/MAMP/htdocs/new_manga/json/get_young_sample.json'
-with open(t_path) as f:
-    tonari_res = json.load(f)
-with open(p_path) as f:
-    plus_res = json.load(f)
-with open(y_path) as f:
-    young_res = json.load(f)
-
 
 site_url = {'plus': 'https://shonenjumpplus.com/series',
             'tonari': 'https://tonarinoyj.jp/series',
@@ -79,8 +59,8 @@ def jampplusGet():
     json = []
     titles = []
 
-    for a in title_a_list:  # 数の調整
-        # for a in title_a_list[:5]:
+    # for a in title_a_list:  # 数の調整
+    for a in title_a_list[:5]:
         url = a
         response = requests.get(url)
         soup = BeautifulSoup(response.text, 'html.parser')
@@ -135,8 +115,8 @@ def tonariGet():
     links = soup.select('ul.daily-series-episode-link-list')
     pattern = 'https://tonarinoyj.jp/episode/\d+'
     i = 0
-    for link in links:
-        # for link in links[:5]:
+    # for link in links:
+    for link in links[:5]:
         results = re.findall(pattern, str(link))
         if len(results) > 1:
             response = requests.get(results[1])
@@ -186,8 +166,8 @@ def youngGet():
     for link in soup.select('ul.current > li > a'):
         link_list.append(path+link.get('href'))
 
-    for a in link_list:
-        # for a in link_list[:5]:
+    # for a in link_list:
+    for a in link_list[:5]:
         response = requests.get(a)
         soup = BeautifulSoup(response.text, 'html.parser')
         title = soup.select_one('div.credit > h1').text
@@ -210,36 +190,45 @@ def youngGet():
 # GETの実装
 
 
-@api.route('/get_jampplus', methods=['GET'])
-def get_jampplus():
-    return make_response(jsonify(plus_res))
+@api.route('/get/plus')
+def get_jampplus(req, resp):
+    resp.headers = {"Content-Type": "application/json; charset=utf-8"}
+    resp.content = json.dumps(plus_res, ensure_ascii=False)
 
 
-@api.route('/get_tonari', methods=['GET'])
-def get_tonari():
-    return make_response(jsonify(tonari_res))
+@api.route('/get/tonari')
+def get_tonari(req, resp):
+    resp.headers = {"Content-Type": "application/json; charset=utf-8"}
+    resp.content = json.dumps(tonari_res, ensure_ascii=False)
 
 
-@api.route('/get_young', methods=['GET'])
-def get_young():
-    return make_response(jsonify(young_res))
+@api.route('/get/young')
+def get_young(req, resp):
+    resp.headers = {"Content-Type": "application/json; charset=utf-8"}
+    resp.content = json.dumps(young_res, ensure_ascii=False)
 
 
-@api.route('/get_all', methods=['GET'])
-def get_all():
+@api.route('/get/all')
+def get_all(req, resp):
     res = plus_res + tonari_res + young_res
     res = sorted(res, key=lambda x: x['date'], reverse=True)
-    return make_response(jsonify(res))
-
-# エラーハンドリング
-
-
-@api.errorhandler(404)
-def not_found(error):
-    return make_response(jsonify({'error': 'Not found'}), 404)
+    resp.headers = {"Content-Type": "application/json; charset=utf-8"}
+    resp.content = json.dumps(res, ensure_ascii=False)
 
 
-# ファイルをスクリプトとして実行した際に
-# ホスト0.0.0.0, ポート3001番でサーバーを起動
+# @api.route("/hello/{who}")
+# def say_hello(req, resp, *, who):
+#     params = req.params.get("id", "")
+#     resp.headers["X-Pizza"] = "42"
+#     resp.status_code = 200
+#     resp.media = {
+#         "Hello": who,
+#         "param": params
+#     }
+
+
 if __name__ == '__main__':
-    api.run(host='0.0.0.0', port=3001)
+    plus_res = jampplusGet()
+    tonari_res = tonariGet()
+    young_res = youngGet()
+    api.run()
