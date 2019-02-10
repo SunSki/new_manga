@@ -19,6 +19,8 @@ site_url = {'plus': 'https://shonenjumpplus.com/series',
             'tonari': 'https://tonarinoyj.jp/series',
             'young': 'https://web-ace.jp/youngaceup/contents/'}
 
+# このデータ形式で返す
+
 
 def to_json(title, link, date, site, img, detail):
     json = {}
@@ -216,7 +218,7 @@ def job():
     conn.close()
 
 
-schedule.every().day.at("0:10").do(job)
+schedule.every().day.at("00:10").do(job)
 schedule.every().day.at("11:10").do(job)
 
 while True:
