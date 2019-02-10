@@ -115,18 +115,20 @@
     <div class="container" id="main">
         <div class="row">
             <div class="col-md-4 manga-list">
-                <?php
-                    manga_show($res_plus,'none');
-                ?>
+                <div class="scroll">
+                    <?php
+                        manga_show($res_plus,'none');
+                    ?>
+                </div>
                 <hr>
             </div>
-            <div class="col-md-4 manga-list">
+            <div class="col-md-4 manga-list scroll">
                 <?php
                     manga_show($res_tonari,'none');
                 ?>
                 <hr>
             </div>
-            <div class="col-md-4 manga-list">
+            <div class="col-md-4 manga-list scroll">
                 <?php
                     echo"<div>";
                     manga_show($res_young,'title');

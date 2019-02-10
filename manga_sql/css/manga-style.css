@@ -78,6 +78,18 @@ a:hover {
     }
 }
 
+@media screen and (min-width: 750px) {
+    .scroll {
+        overflow-y: scroll;
+        height: 100vh;
+    }
+
+    .scroll::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+
 
 .top {
     background-color: #9DDCDC;
