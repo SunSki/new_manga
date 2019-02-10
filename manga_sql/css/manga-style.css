@@ -81,6 +81,7 @@ a:hover {
 @media screen and (min-width: 750px) {
     .scroll {
         overflow-y: scroll;
+        -webkit-overflow-scrolling: touch;
         height: 100vh;
     }
 

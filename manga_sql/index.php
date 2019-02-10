@@ -140,10 +140,6 @@
     </div>
 
     <div id="page_top"><a href="#"></a></div>
-
-    <?php
-        require('php/footer.php');
-    ?>
 </body>
 
 </html>
