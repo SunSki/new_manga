@@ -5,44 +5,45 @@
     <title>ユーザーマンガ一覧</title>
 
     <?php
+        ini_set('display_errors', 1);#エラーを表示させる
+        date_default_timezone_set('Asia/Tokyo');#標準時間を日本に設定
         require('php/head.php');
-        
-        date_default_timezone_set('Asia/Tokyo');
-
         require('php/db-con.php');
 
-        ini_set('display_errors', 1);
-
-        function day_diff($date1, $date2) {
-            // 日付をUNIXタイムスタンプに変換
-            $timestamp1 = strtotime($date1);
-            $timestamp2 = strtotime($date2);
-         
-            // 何秒離れているかを計算
-            $seconddiff = abs($timestamp2 - $timestamp1);
-         
-            // 日数に変換
-            $daydiff = $seconddiff / (60 * 60 * 24);
-         
-            // 戻り値
-            return $daydiff;
+        function week ($date){
+            $datetime = new DateTime($date);
+            $week = array("日", "月", "火", "水", "木", "金", "土");
+            $w = (int)$datetime->format('w');
+            return "(". $week[$w] . ")";
         }
-
+        
+        #お気に入り追加ボタンが押された時
         function addFavo($mysqli){
             if(!empty($_POST["addFavo"])){
                 $addFavo_list = $_POST["addFavo"];
-
                 $name = $_SESSION['name'];
                 foreach($addFavo_list as $favoTitle){
                     $sql = "select * from favo where name = '$name' and title = '$favoTitle'";
                     $resultCheck = $mysqli->query($sql);
-                    if ($resultCheck->num_rows == 0){
+                    if ($resultCheck->num_rows == 0){   #何か選択されていたら
                         $sql = "insert into favo (name, title) values ('$name', '$favoTitle')";
                         $resultAdd = $mysqli->query($sql);
                     }
                     $resultCheck->close();
                 }
                 
+            }
+        }
+        #お気に入り消去ボタンが押された時
+        function removeFavo($mysqli){
+            if(!empty($_POST["removeFavo"])){
+                $name = $_SESSION['name'];
+                $removeFavo_list = $_POST["removeFavo"];
+                foreach($removeFavo_list as $favoTitle){
+                    $sql = "delete from favo where name = '$name' and title = '$favoTitle'";
+                    $resultCheck = $mysqli->query($sql);
+                }
+                $resultCheck = $mysqli->query($sql);
             }
         }
 
@@ -70,6 +71,7 @@
             }
         }
 
+        #ユーザーのお気に入りを表示
         function showFavo($mysqli, $json){
             $today = date("Y/m/d");
             $date_now ='';
@@ -77,77 +79,72 @@
             $sql = "select * from favo where name = '$name'";
             $resultShow = $mysqli->query($sql);
 
-            echo "<div class='container pb-2'>";
-                //お気に入り一覧を表示
-                if($resultShow->num_rows > 0){
-                    echo "<div class='favo-top mb-4'><a href='auth.php'>お気に入り一覧</a></div>";
-                    echo "<div class='manga-list'>";
-                        foreach($json as $item){//jsonを巡回
-                            $jsonTitle = $item->title;
-                            $img = $item->img;
-                            $resultShow = $mysqli->query($sql);
-                            while ($row = $resultShow->fetch_assoc()){//データベースを巡回
-                                $title = $row["title"];
-                                if($title==$jsonTitle){
-                                    $link = $item->link;
-                                    $date = $item->date;
-                                    $site = $item->site;
-                                    $site = siteShow($site);
-                                    $title = $item->title;
-                                    $detail = $item->detail;
-                                    if($date_now != $date){
-                                        if($date_now != ''){
-                                            echo "</div><hr>";
-                                        }
-                                        $ago = day_diff($today,$date);
-                                        if($ago!=0){
-                                            echo "<div class='ago'>${ago}日前</div>";
-                                        }else{
-                                            echo "<div class='ago'>本日更新</div>";
-                                        }
-                                        echo "<div class='split-date'>$date</div>";
-                                        echo "<div class='row'>";
+            //お気に入り一覧を表示
+            if($resultShow->num_rows > 0){
+                echo "<div class='favo-top mb-4'><a href='auth.php'>お気に入り一覧</a></div>";
+                echo "<div class='manga-list' id='user-favo'>";
+                    foreach($json as $item){//jsonを巡回
+                        $jsonTitle = $item->title;
+                        $img = $item->img;
+                        $resultShow = $mysqli->query($sql);
+                        while ($row = $resultShow->fetch_assoc()){//データベースを巡回
+                            $title = $row["title"];
+                            if($title==$jsonTitle){
+                                $link = $item->link;
+                                $date = $item->date;
+                                $site = $item->site;
+                                $site = siteShow($site);
+                                $title = $item->title;
+                                $detail = $item->detail;
+                                if($date_now != $date){
+                                    if($date_now != ''){  #初回以降適用
+                                        echo "</ul><hr>";####1閉じる ul
                                     }
-                                    $date_now = $date;
-
-                                    echo"<div class='col-sm-4'>";
-                                        echo "<div class='container'>";
-                                            echo "<a href='${link}' target='_blank'>";
-                                                echo "<div class='row work-list pt-1 pb-1 mb-1 mt-1'>";
-                                                    echo "<div><img src='${img}' class='my-manga-img'></div>";
-                                                    //ヤングエースの時だけタイトル名を追加する
-                                                    if($site == 'ヤングエース'){
-                                                        echo "<div class='title'>${title}</div>";
-                                                    }
-                                                    echo "<div class='title'>${detail}</div>";
-                                                    //echo "<div class='date'>${date}</div>";
-                                                    echo "<div class='site'>${site}</div>";
-                                                echo "</div>";
-                                            echo"</a>";
-                                        echo "</div>";
-                                    echo"</div>";
-                                    break;
+                                    
+                                    $week = week($date);
+                                    $scroll_date = substr($date,5,5);
+                                    if($week == "(月)"){
+                                        echo "<div class='pl-3 mb-4 index_date mon'><span id='month-day'>${scroll_date}</span><span id='week'>${week}</span></div>";
+                                    }elseif($week == "(火)"){
+                                        echo "<div class='pl-3 mb-4 index_date tue'><span id='month-day'>${scroll_date}</span><span id='week'>${week}</span></div>";
+                                    }elseif($week == "(水)"){
+                                        echo "<div class='pl-3 mb-4 index_date wed'><span id='month-day'>${scroll_date}</span><span id='week'>${week}</span></div>";
+                                    }elseif($week == "(木)"){
+                                        echo "<div class='pl-3 mb-4 index_date thr'><span id='month-day'>${scroll_date}</span><span id='week'>${week}</span></div>";
+                                    }elseif($week == "(金)"){
+                                        echo "<div class='pl-3 mb-4 index_date fri'><span id='month-day'>${scroll_date}</span><span id='week'>${week}</span></div>";
+                                    }elseif($week == "(土)"){
+                                        echo "<div class='pl-3 mb-4 index_date sat'><span id='month-day'>${scroll_date}</span><span id='week'>${week}</span></div>";
+                                    }elseif($week == "(日)"){
+                                        echo "<div class='pl-3 mb-4 index_date sun'><span id='month-day'>${scroll_date}</span><span id='week'>${week}</span></div>";
+                                    }
+                                    
+                                    echo "<ul class='horizontal-list pl-3'>";####1開始 ul
                                 }
+                                $date_now = $date;
+
+                                echo "<li class='item mr-5'>";
+                                    echo "<a href='${link}'>";
+                                        echo "<div class='title'>";
+                                            echo "<div><img src='${img}' class='shadow-sm' width='100%'></div>";
+                                            if($site == "young"){
+                                                echo "<div class='title'>${title}${detail}</div>";
+                                            }else{
+                                                echo "<div class='title'>${detail}</div>";
+                                            }
+                                        echo "</div>";
+                                    echo"</a>";
+                                echo"</li>";
+
+                                break;
                             }
-                            $resultShow->close();    
                         }
-                    echo "</div>";
+                        $resultShow->close();    
+                    }
+                echo "</ul>";####1閉じる ul
             echo "</div>";
             echo "<hr>";
             echo "<div><a href='remove_favo.php' class='del-btn'>お気に入り削除ページ</a></div>";
-            }
-        echo "</div>";
-        }
-        
-        function removeFavo($mysqli){
-            if(!empty($_POST["removeFavo"])){
-                $name = $_SESSION['name'];
-                $removeFavo_list = $_POST["removeFavo"];
-                foreach($removeFavo_list as $favoTitle){
-                    $sql = "delete from favo where name = '$name' and title = '$favoTitle'";
-                    $resultCheck = $mysqli->query($sql);
-                }
-                $resultCheck = $mysqli->query($sql);
             }
         }
 
@@ -182,9 +179,12 @@
 
         function userShow($name,$mysqli){
             require('php/json_get.php');
+
+            #ボタンが押された時の処理
             removeFavo($mysqli);
             addFavo($mysqli);
 
+            #ユーザーのお気に入りを表示
             showFavo($mysqli, $res_all);
 
             echo "<hr>";
@@ -240,12 +240,13 @@
 </head>
 
 <body>
+    <!-- ログインの有無でユーザー名を表示するか決める -->
     <div class='top pt-2 pb-2' id="header">
         <nav class="navbar justify-content-between sticky-top">
             <div class="logo ml-4">
                     <a href="index.php">新着WEBマンガ</a>
             </div>
-            <div class="text-right mr-4">
+            <div class="text-left ml-4 mr-4 mypage-head">
                 <?php
                     if($state == 0 or $state == 2){
                         $name = $_SESSION['name'];
@@ -256,6 +257,7 @@
             </div>
         </nav>
     </div>
+
 
     <div id="main">
         <?php

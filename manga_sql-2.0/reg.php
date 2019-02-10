@@ -27,12 +27,14 @@
                 $sql = "select * from users where name = '$name'";
                 $result = $mysqli->query($sql); //SQL文の実行
                 if( $result->num_rows == 0){
-                    $sql = "insert into users (name) values ('$name')";
-                    $result = $mysqli->query($sql); //SQL文の実行
-                    echo "${name}で登録しました！<br>";
-                    session_start();
-                    $_SESSION['name'] = $name;
-                    echo "<a href='auth.php'>ユーザーページへ行く</a>";
+                    echo "<div class='container text-center'>";
+                        $sql = "insert into users (name) values ('$name')";
+                        $result = $mysqli->query($sql); //SQL文の実行
+                        echo "<div class='h2 mt-5 mb-3'>${name}で登録しました</div>";
+                        session_start();
+                        $_SESSION['name'] = $name;
+                        echo "<div class='mt-5 not-found-btn'><a href='auth.php'>ユーザーページ</a></div>";
+                    echo "</div>";
                 }else{
                     echo "<div class='container text-center'>";
                         echo "<div class='h2 mt-5 mb-3'>その名前はすでに登録されています</div>";

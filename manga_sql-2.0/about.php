@@ -43,14 +43,16 @@
                 <div class="mb-1 h4">概要</div>
                 <ul class="ml-4">
                     <li>複数のWEBマンガサイトの新着マンガを、いい感じに読めるサービス</li>
+                    <li>WEBマンガ読み慣れている人向けです。</li>
                     <li>30日以内に更新された作品を公開しています。</li>
+                    <li>一日2回スクレイピングしているのでリンク切れがありません。</li>
                     <li>現在は
                         <span><a href="https://shonenjumpplus.com/series">少年ジャンプ+</a></span>、
                         <span><a href="https://tonarinoyj.jp/series">となりのヤングジャンプ</a></span>、
                         <span><a href="https://web-ace.jp/youngaceup/contents/">ヤングエースUP</a></span>のみ対応しています。
                     </li>
                     <li><a href="log-reg.php">ログイン</a>して、お気に入りにマンガを登録して見ることができます。</li>
-                    <li>タブレットに最適化しているので、スマホは非推奨。</li>
+                    <li>このページ作ったけど、多分ほとんど誰も見ない。</li>
                 </ul>
                 <div class="mt-3 mt-4 mb-2 h4">使用言語</div>
                 <div>html, css, php, python</div>

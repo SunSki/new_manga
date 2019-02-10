@@ -67,7 +67,7 @@
             <div class="logo ml-4">
                     <a href="index.php">新着WEBマンガ</a>
             </div>
-            <div class="text-right mr-4">
+            <div class="text-left ml-4 mr-4">
                 <?php
                     if($state == 0){
                         echo"<a href='auth.php' class='mypage mr-3'>${name}のページ</a>";

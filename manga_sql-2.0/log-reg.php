@@ -35,7 +35,7 @@
                 </div>
 
                 <div>
-                    <div class="h5">初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
+                    <div class="h5 mb-5">初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
                 </div>
 
                 <!-- <?php
@@ -58,9 +58,6 @@
         </div>
     </div>
 
-    <?php
-        require('php/footer-fix.php');
-    ?>
 </body>
 
 <?php

@@ -13,9 +13,47 @@ a:hover {
     text-decoration: none;
 }
 
+
 .manga-list a:visited {
     color: #9DDCDC;
 }
+
+#user-favo li.item {
+    /* 横スクロール用 */
+    width: 160px;
+    display: inline-block;
+}
+
+#user-favo ul.horizontal-list {
+    overflow-x: auto;
+    white-space: nowrap;
+    -webkit-overflow-scrolling: touch;
+}
+
+#user-favo .index_date {
+    background-color: white;
+    width: 150px;
+    border-left: solid 10px;
+}
+
+#usre-favo #month-day {
+    font-size: 24px;
+}
+
+#user-favo .title {
+    width: 100%;
+    font-size: 12px;
+    margin-top: 5px;
+    white-space: normal;
+    display: inline-block;
+    vertical-align: top;
+}
+
+
+
+
+
+
 
 .input {
     padding: 10px;

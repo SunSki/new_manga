@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 
 try {
-    // 接続
+    // sqliteに接続 パスを指定する
     $pdo = new PDO('sqlite:/Applications/MAMP/htdocs/new_manga/py/manga-list.db');
 
     // SQL実行時にもエラーの代わりに例外を投げるように設定
@@ -13,6 +13,7 @@ try {
 	$pdo->beginTransaction ();
 
     // 選択 (プリペアドステートメント)
+    //idを降順に一つ取得　-> 最新のjsonを取得
     $plus_q = $pdo->query("SELECT json FROM plus ORDER BY id DESC LIMIT 1");
     $tonari_q = $pdo->query("SELECT json FROM tonari ORDER BY id DESC LIMIT 1");
     $young_q = $pdo->query("SELECT json FROM young ORDER BY id DESC LIMIT 1");
