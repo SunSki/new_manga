@@ -130,11 +130,68 @@ nav .square_btn:active {
     transform: translateY(2px);
 }
 
-.horizontal-list {
+
+#index_manga ul.horizontal-list {
     overflow-x: auto;
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
 }
+
+#index_manga li.item {
+    /* 横スクロール用 */
+    display: inline-block;
+}
+
+#index_manga .index_date {
+    background-color: white;
+    width: 150px;
+    border-left: solid 10px;
+}
+
+#index_manga #month-day {
+    font-size: 24px;
+}
+
+#index_manga #week {}
+
+.mon {
+    color: #FFEB3B;
+}
+
+.tue {
+    color: #F44336;
+}
+
+.wed {
+    color: #2196F3;
+}
+
+.thr {
+    color: #4CAF50;
+}
+
+.fri {
+    color: #9C27B0;
+}
+
+.sat {
+    color: #795548;
+}
+
+.sun {
+    color: #FF9800;
+}
+
+/* 
+#FFEB3B
+#F44336
+#2196F3
+#4CAF50
+#9C27B0
+#795548
+#FF9800 
+*/
+
 
 
 body {
@@ -153,27 +210,8 @@ body {
     font-size: 16px;
 }
 
-
-.manga-img {
-    width: 70%;
-}
-
 .my-manga-img {
     width: 90%;
-}
-
-.work-list:hover {
-    color: black;
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
-}
-
-.ago {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.split-date {
-    font-size: 18px;
 }
 
 .week {
