@@ -108,13 +108,13 @@
                         echo "<div class='pl-3 mb-4 index_date sun'><span id='month-day'>${scroll_date}</span><span id='week'>${week}</span></div>";
                     }
                     
-                    echo "<ul class='horizontal-list'>";
+                    echo "<ul class='horizontal-list pl-3'>";
                 }
                 $date_now = $date;
-                echo "<li class='item pl-4 pr-3'>";
+                echo "<li class='item mr-5'>";
                     echo "<a href='${link}'>";
-                        echo "<div class=''>";
-                            echo "<div><img src='${img}' class='' width='100px'></div>";
+                        echo "<div class='title'>";
+                            echo "<div><img src='${img}' class='shadow-sm' width='100%'></div>";
                             if($site == "young"){
                                 echo "<div class='title'>${title}${detail}</div>";
                             }else{
