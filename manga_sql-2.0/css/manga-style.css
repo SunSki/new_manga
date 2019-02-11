@@ -183,6 +183,10 @@ nav .square_btn:active {
     display: inline-block;
 }
 
+#index_manga li img {
+    object-fit: cover;
+}
+
 #index_manga .index_date {
     background-color: white;
     width: 150px;

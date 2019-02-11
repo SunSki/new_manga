@@ -57,8 +57,8 @@
                 echo "<li class='item mr-2'>";
                     echo "<a href='${link}'>";
                         echo "<div class='title'>";
-                            echo "<div><img src='${img}' class='shadow-sm' width='100%'></div>";
-                            if($site == "young"){
+                            echo "<div><img src='${img}' class='shadow-sm' width='100%' height='120px'></div>";
+                            if($site == "young" || $site == "ura"){
                                 echo "<div class='title'>${title}${detail}</div>";
                             }else{
                                 echo "<div class='title'>${detail}</div>";
