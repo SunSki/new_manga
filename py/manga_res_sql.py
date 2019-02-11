@@ -15,7 +15,10 @@ import sqlite3
 
 site_url = {'plus': 'https://shonenjumpplus.com/series',
             'tonari': 'https://tonarinoyj.jp/series',
-            'young': 'https://web-ace.jp/youngaceup/contents/'}
+            'young': 'https://web-ace.jp/youngaceup/contents/',
+            'ura': 'https://urasunday.com/list/index.html'}
+
+sleepTime = 0.1
 
 
 def to_json(title, link, date, site, img, detail):
@@ -89,11 +92,9 @@ def jampplusGet():
                 print('重複:' + title.text)
         else:
             print('ダメ')
-        time.sleep(0.1)
+        time.sleep(sleepTime)
 
     print('finished')
-
-    time.sleep(1)
     return sort_date(json)
 
 # tonari
@@ -130,11 +131,9 @@ def tonariGet():
                     json.append(
                         to_json(title, results[1], date, 'tonari', img, detail))
         i += 1
-        time.sleep(0.1)
+        time.sleep(sleepTime)
 
     print('finish')
-    time.sleep(1)
-
     return sort_date(json)
 
 # young
@@ -178,11 +177,56 @@ def youngGet():
             print(date)
             print(img)
             json.append(to_json(title, link, date, 'young', img, detail))
-            time.sleep(0.1)
+            time.sleep(sleepTime)
     print('finish')
-    time.sleep(1)
     return sort_date(json)
 # GETの実装
+
+
+def uraGet():
+    url = site_url['ura']
+    site_path = 'https://urasunday.com'
+    response = requests.get(url)
+    soup = BeautifulSoup(response.text, 'html.parser')  # クローリング
+
+    a_link_list = []
+    for link in soup.select('div.comicListBox > a'):
+        link = link.get('href')[2:]
+        link = site_path + link
+        a_link_list.append(link)
+
+    json = []
+
+    # for a in a_link_list[:4]:
+    for a in a_link_list:
+        url = a
+        path = url[0:-10]
+        response = requests.get(url)
+        soup = BeautifulSoup(response.text, 'html.parser')
+
+        date_s = soup.select_one("div.comicButtonDateBox")
+        date = date_s.text[0:10]
+        if date.startswith('20'):
+            if date_judge(date):
+                img_s = soup.select_one("section#mainControl > div > a > img")
+                if img_s != None:
+                    img = img_s.get('src')
+                    title_s = soup.select_one("li.detailComicTitle > h1")
+                    title = title_s.text
+                    link_s = soup.select_one("div.comicButtonDateBox > a")
+                    detail = link_s.text  #
+                    link = path + link_s.get('href')[2:]  #
+                    json.append(to_json(title, link, date, 'ura', img, detail))
+
+                    print(title)
+                    # print(detail)
+                    # print(date)
+                    # print(link)
+                    # print(img)
+        time.sleep(sleepTime)
+
+    print("finish")
+    return sort_date(json)
 
 
 if __name__ == '__main__':
@@ -191,8 +235,9 @@ if __name__ == '__main__':
     plus_res = jampplusGet()
     tonari_res = tonariGet()
     young_res = youngGet()
+    ura_res = uraGet()
 
-    res = plus_res + tonari_res + young_res
+    res = young_res + tonari_res + ura_res + plus_res
     all_res = sorted(res, key=lambda x: x['date'], reverse=True)
     all_res_sort = sorted(res, key=lambda x: x['title'])
 
@@ -204,6 +249,9 @@ if __name__ == '__main__':
 
     young = json.dumps(young_res, ensure_ascii=False)
     young = young.replace("'", "")
+
+    ura = json.dumps(ura_res, ensure_ascii=False)
+    ura = ura.replace("'", "")
 
     allRes = json.dumps(all_res, ensure_ascii=False)
     allRes = allRes.replace("'", "")
@@ -217,6 +265,7 @@ if __name__ == '__main__':
     c.executescript("INSERT INTO plus ('json') VALUES ('%s')" % plus)
     c.executescript("INSERT INTO tonari ('json') VALUES ('%s')" % tonari)
     c.executescript("INSERT INTO young ('json') VALUES ('%s')" % young)
+    c.executescript("INSERT INTO ura ('json') VALUES ('%s')" % ura)
     c.executescript("INSERT INTO allManga ('json') VALUES ('%s')" % allRes)
     c.executescript(
         "INSERT INTO allManga_sort ('json') VALUES ('%s')" % allRes_sort)
