@@ -1,10 +1,17 @@
-var fadetime = 300;
+var fadetime = 500;
 
 $('head').append(
     '<style>#main{display:none;}',
     '<style>#footer{display:none;}'
 );
+
 $(window).on("load", function () {
+    $('#main').fadeIn(fadetime);
+    $('#footer').fadeIn(fadetime);
+    $('body').removeClass('fadeout');
+});
+
+$(window).onpopstate(function () {
     $('#main').fadeIn(fadetime);
     $('#footer').fadeIn(fadetime);
     $('body').removeClass('fadeout');
