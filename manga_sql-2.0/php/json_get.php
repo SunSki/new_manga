@@ -18,11 +18,13 @@ try {
     $tonari_q = $pdo->query("SELECT json FROM tonari ORDER BY id DESC LIMIT 1");
     $young_q = $pdo->query("SELECT json FROM young ORDER BY id DESC LIMIT 1");
     $all_q = $pdo->query("SELECT json FROM allManga ORDER BY id DESC LIMIT 1");
+    $all_sort_q = $pdo->query("SELECT json FROM allManga_sort ORDER BY id DESC LIMIT 1");
 
     $plus = $plus_q->fetchall();
     $tonari = $tonari_q->fetchall();
     $young = $young_q->fetchall();
     $all = $all_q->fetchall();
+    $all_sort = $all_sort_q->fetchall();
 
     foreach($plus as $row){
         $res_plus = json_decode($row[0]);
@@ -36,6 +38,10 @@ try {
     foreach($all as $row){
         $res_all = json_decode($row[0]);
     }
+    foreach($all_sort as $row){
+        $res_all_sort = json_decode($row[0]);
+    }
+    //データベースを閉じる
     $pdo = null;
 
 } catch (Exception $e) {

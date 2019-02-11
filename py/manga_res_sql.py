@@ -192,17 +192,25 @@ if __name__ == '__main__':
     plus_res = jampplusGet()
     tonari_res = tonariGet()
     young_res = youngGet()
+
     res = plus_res + tonari_res + young_res
     all_res = sorted(res, key=lambda x: x['date'], reverse=True)
+    all_res_sort = sorted(res, key=lambda x: x['title'])
 
     plus = json.dumps(plus_res, ensure_ascii=False)
     plus = plus.replace("'", "")
+
     tonari = json.dumps(tonari_res, ensure_ascii=False)
     tonari = tonari.replace("'", "")
+
     young = json.dumps(young_res, ensure_ascii=False)
     young = young.replace("'", "")
+
     allRes = json.dumps(all_res, ensure_ascii=False)
     allRes = allRes.replace("'", "")
+
+    allRes_sort = json.dumps(all_res_sort, ensure_ascii=False)
+    allRes_sort = allRes_sort.replace("'", "")
 
     conn = sqlite3.connect('manga-list.db')
     c = conn.cursor()
@@ -211,6 +219,8 @@ if __name__ == '__main__':
     c.executescript("INSERT INTO tonari ('json') VALUES ('%s')" % tonari)
     c.executescript("INSERT INTO young ('json') VALUES ('%s')" % young)
     c.executescript("INSERT INTO allManga ('json') VALUES ('%s')" % allRes)
+    c.executescript(
+        "INSERT INTO allManga_sort ('json') VALUES ('%s')" % allRes_sort)
 
     conn.commit()
     conn.close()

@@ -81,7 +81,7 @@
 
             //お気に入り一覧を表示
             if($resultShow->num_rows > 0){
-                echo "<div class='favo-top mb-4'><a href='auth.php'>お気に入り一覧</a></div>";
+                echo "<div class='favo-top mb-4 ml-4'><a href='auth.php'>${name}のリスト</a></div>";
                 echo "<div class='manga-list' id='user-favo'>";
                     foreach($json as $item){//jsonを巡回
                         $jsonTitle = $item->title;
@@ -144,18 +144,18 @@
                 echo "</ul>";####1閉じる ul
             echo "</div>";
             echo "<hr>";
-            echo "<div><a href='remove_favo.php' class='del-btn'>お気に入り削除ページ</a></div>";
+            echo "<div><a href='remove_favo.php' class='del-btn ml-4'>マイリスト削除ページ</a></div>";
+            }else{
+                echo "<div class='favo-top mb-4 ml-4 mr-4 h4 p-2 favo-add-top .rounded'>マイリストに作品を追加</div>";
             }
         }
 
         function favo_input($res,$mysqli){
             $name = $_SESSION['name'];
             $site = $res[0]->site;
-            $img_url = siteImg($site);
 
-            echo "<img src=${img_url}  class='worksImg'>";//サイトの画像
-            echo "<hr>";
-            echo "<div class='cp_ipcheck'>";//チェックボックスのデザイン
+            //echo "<hr>";
+            echo "<div class='cp_ipcheck ml-4 mr-4 mb-5'>";//チェックボックスのデザイン
             foreach($res as $item){
                 $title = $item->title;
                 $sql = "select * from favo where name = '$name' and title = '$title'";
@@ -164,16 +164,19 @@
                     if($resultFavo->num_rows == 0){
                         $link = $item->link;
                         $date = $item->date;
-                        //echo "<input type='checkbox' name='addFavo[]' value='$title'><a href='$link' target='_blank'>$title</a>date:$date<br>";
-                        echo "<div class='list_item'>";
-                            echo "<input type='checkbox' name='addFavo[]' value='${title}' class='option-input' id='${link}'>";
-                            echo "<label for='${link}'>${title}</label>";
-                        echo "</div>";
+                        $img = $item->img;
+                            echo "<div class='list_item'>";
+                                echo "<a href='${link}'><img src='${img}' width='40px' class='mr-1 list_img'></a>";
+                                echo "<input type='checkbox' name='addFavo[]' value='${title}' class='option-input' id='${link}'>";
+                                echo "<label for='${link}' class='list_label'>${title}</label>";
+                            echo "</div>";
                     }
                     $resultFavo->close();
                 }
             }
             echo "</div>";
+
+            echo"<script src='js/word_comp.js'></script>";
 
         }
 
@@ -190,21 +193,11 @@
             echo "<hr>";
 
             echo "<form method='post' action='auth.php'>";
-                echo "<div class='container pb-5'>";
-                echo "<h4 class='mb-4'>作品一覧</h4>";
-                echo "<div class='row'>";
-                    echo "<div class='col-md-4'>";
-                        favo_input($res_plus,$mysqli);
-                    echo "</div>";
-                    echo "<div class='col-md-4'>";
-                        favo_input($res_tonari,$mysqli);
-                    echo "</div>";
-                    echo "<div class='col-md-4'>";
-                        favo_input($res_young,$mysqli);
-                    echo "</div>";
+                echo "<h4 class='mb-4 ml-4'>作品一覧</h4>";
+                echo "<div>";
+                    favo_input($res_all_sort,$mysqli);
                 echo "</div>";
-                echo"</div>";
-                echo"<div class='text-center'><input type='submit' value='お気に入りに追加' id='add' class='favo-btn '></div>";            
+                echo"<div class='text-center ml-4'><input type='submit' value='マイリストに追加' id='add' class='favo-btn '></div>";            
             echo"</form>";
         
         }

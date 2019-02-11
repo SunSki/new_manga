@@ -52,9 +52,6 @@ a:hover {
 
 
 
-
-
-
 .input {
     padding: 10px;
     font-size: 1.3em;
@@ -105,6 +102,10 @@ a:hover {
     color: #7EC2C2;
 }
 
+.favo-add-top {
+    color: white;
+    background-color: #E67A7A;
+}
 
 
 .top {
@@ -269,12 +270,6 @@ body {
     bottom: -100px;
 }
 
-.worksImg {
-    height: 24px;
-    margin-bottom: 12px;
-}
-
-
 .not-found-btn a {
     padding: 20px;
     background-color: white;
@@ -313,7 +308,7 @@ footer {
     /* 文字位置   */
     cursor: pointer;
     /* カーソル   */
-    padding: 20px 100px;
+    padding: 20px 60px;
     /* 余白       */
     background: #7ec2c2;
     /* 背景色     */
@@ -384,12 +379,18 @@ footer {
     /* 文字色     */
 }
 
+.list_item {}
 
 .list_item a:hover {
     color: #7EC2C2;
 }
 
+.list_label {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
 
+.list_img {}
 
 
 .cp_ipcheck input[type='checkbox'] {
@@ -401,7 +402,7 @@ footer {
 .cp_ipcheck label {
     position: relative;
     display: inline-block;
-    padding: 5px 10px;
+    padding: 10px 5px;
     margin: 10px 0;
     cursor: pointer;
     font-size: 16px;

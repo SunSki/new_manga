@@ -12,7 +12,7 @@
             $sql = "select * from favo where name = '$name'";
             $resultShow = $mysqli->query($sql);
             if($resultShow->num_rows > 0){
-                echo"<div class='container'>";
+                echo"<div class='container' style='margin-bottom:120px'>";
                 echo"<div class='h3 mt-5'>削除する作品を選択</div>";
                 echo"<form method='post' action='auth.php'>";
                     echo "<div class='cp_ipcheck mb-5'>";
