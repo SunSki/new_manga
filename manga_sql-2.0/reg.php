@@ -30,23 +30,23 @@
                     echo "<div class='container text-center'>";
                         $sql = "insert into users (name) values ('$name')";
                         $result = $mysqli->query($sql); //SQL文の実行
-                        echo "<div class='h2 mt-5 mb-3'>${name}で登録しました</div>";
+                        echo "<div class='h2 mt-5 mb-3' style='color:white'>${name}で登録しました</div>";
                         session_start();
                         $_SESSION['name'] = $name;
                         echo "<div class='mt-5 not-found-btn'><a href='auth.php'>ユーザーページ</a></div>";
                     echo "</div>";
                 }else{
                     echo "<div class='container text-center'>";
-                        echo "<div class='h2 mt-5 mb-3'>その名前はすでに登録されています</div>";
-                        echo "<div><img src='img/not-found.png' width='60%'></div>";
+                        echo "<div class='h2 mt-5 mb-3' style='color:white'>その名前はすでに登録されています</div>";
+                        echo "<div><img src='img/not_found.png' width='60%'></div>";
                         echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                     echo "</div>";
                 }
                 $result->close(); // 結果セットを閉じる
             }else{
                 echo "<div class='container text-center'>";
-                    echo "<div class='h2 mt-5 mb-3'>名前を入力してください</div>";
-                    echo "<div><img src='img/not-found.png' width='60%'></div>";
+                    echo "<div class='h2 mt-5 mb-3' style='color:white'>名前を入力してください</div>";
+                    echo "<div><img src='img/not_found.png' width='60%'></div>";
                     echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
                 require('php/footer-fix.php');

@@ -20,7 +20,7 @@
             <div class="col-sm-8">
                 <div class="mb-5 p-5 shadow log-reg-box">
                     <form action="auth.php" method="post">
-                        <h3>ログイン</h3>
+                        <h3 class='white'>ログイン</h3>
                         <input type="text" name="login" class="input">
                         <input type="submit" value="Login" class="log-reg-input mt-3">
                     </form>
@@ -28,14 +28,14 @@
                 
                 <div class="mb-5 p-5 shadow log-reg-box">
                     <form action="reg.php" method="post">
-                        <h3>登録</h3>
+                        <h3 class='white'>登録</h3>
                         <input type="text" name="reg" class="input">
                         <input type="submit" value="Registration" class="log-reg-input mt-3">
                     </form>
                 </div>
 
                 <div>
-                    <div class="h5 mb-5">初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
+                    <div class="h5 mb-5" style="color:white">初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
                 </div>
 
                 <!-- <?php

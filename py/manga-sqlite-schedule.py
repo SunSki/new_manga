@@ -50,7 +50,7 @@ def date_judge(date):
 def jampplusGet():
     url = site_url['plus']
     response = requests.get(url)
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(response.text, 'html.parser')  # クローリング
 
     title_a_list = []
     for link in soup.select('.series-list-item > a'):

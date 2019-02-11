@@ -81,7 +81,7 @@
 
             //お気に入り一覧を表示
             if($resultShow->num_rows > 0){
-                echo "<div class='favo-top mb-4 ml-4'><a href='auth.php'>${name}のリスト</a></div>";
+                echo "<div class='favo-top mb-4 ml-4 white'><a href='auth.php'>${name}のリスト</a></div>";
                 echo "<div class='manga-list' id='user-favo'>";
                     foreach($json as $item){//jsonを巡回
                         $jsonTitle = $item->title;
@@ -93,7 +93,6 @@
                                 $link = $item->link;
                                 $date = $item->date;
                                 $site = $item->site;
-                                $site = siteShow($site);
                                 $title = $item->title;
                                 $detail = $item->detail;
                                 if($date_now != $date){
@@ -165,6 +164,8 @@
                         $link = $item->link;
                         $date = $item->date;
                         $img = $item->img;
+                        $site = $item->site;
+                        $detail = $item->detail;
                             echo "<div class='list_item'>";
                                 echo "<a href='${link}'><img src='${img}' width='40px' class='mr-1 list_img'></a>";
                                 echo "<input type='checkbox' name='addFavo[]' value='${title}' class='option-input' id='${link}'>";
@@ -192,8 +193,8 @@
 
             echo "<hr>";
 
-            echo "<form method='post' action='auth.php'>";
-                echo "<h4 class='mb-4 ml-4'>作品一覧</h4>";
+            echo "<form method='post' action='auth.php' class='work-list'>";
+                echo "<h4 class='mb-4 ml-4 pt-4 white border-top-w-5'>リストに追加する作品を選択</h4>";
                 echo "<div>";
                     favo_input($res_all_sort,$mysqli);
                 echo "</div>";
@@ -234,7 +235,7 @@
 
 <body>
     <!-- ログインの有無でユーザー名を表示するか決める -->
-    <div class='top pt-2 pb-2' id="header">
+    <!-- <div class='top pt-2 pb-2' id="header">
         <nav class="navbar justify-content-between sticky-top">
             <div class="logo ml-4">
                     <a href="index.php">新着WEBマンガ</a>
@@ -249,7 +250,10 @@
                 <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
             </div>
         </nav>
-    </div>
+    </div> -->
+    <?php
+        require('php/header.php');
+    ?>
 
 
     <div id="main">
@@ -259,8 +263,8 @@
             }
             elseif($state == 1){//ユーザー名なし
                 echo "<div class='container text-center'>";
-                    echo "<div class='h2 mt-5 mb-3'>ユーザー名がありません</div>";
-                    echo "<div><img src='img/not-found.png' width='60%'></div>";
+                    echo "<div class='h2 mt-5 mb-3 white'>ユーザー名がありません</div>";
+                    echo "<div><img src='img/not_found.png' width='60%'></div>";
                     echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
                 require('php/footer-fix.php');
@@ -270,8 +274,8 @@
             }
             else{//ログインしてください
                 echo "<div class='container text-center'>";
-                    echo "<div class='h2 mt-5 mb-3'>ログインして下さい</div>";
-                    echo "<div><img src='img/not-found.png' width='60%'></div>";
+                    echo "<div class='h2 mt-5 mb-3 white'>ログインして下さい</div>";
+                    echo "<div><img src='img/not_found.png' width='60%'></div>";
                     echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
                 require('php/footer-fix.php');
@@ -285,7 +289,7 @@
 
 </body>
 
-<div id="page_top"><a href="#"></a></div>
+<!-- <div id="page_top"><a href="#"></a></div> -->
 
 <?php
     $mysqli->close();

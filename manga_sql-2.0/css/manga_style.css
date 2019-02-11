@@ -6,13 +6,21 @@
 /* ペール：#FFF4E1 */
 a {
     text-decoration: none;
-    color: black;
+    /* color: black; */
+    color: white;
 }
 
 a:hover {
     text-decoration: none;
 }
 
+.white {
+    color: white;
+}
+
+.border-top-w-5 {
+    border-top: solid 10px;
+}
 
 .manga-list a:visited {
     color: #9DDCDC;
@@ -99,7 +107,7 @@ a:hover {
 .favo-top a {
     margin-top: 40px;
     font-size: 24px;
-    color: #7EC2C2;
+    /* color: #7EC2C2; */
 }
 
 .favo-add-top {
@@ -148,13 +156,17 @@ nav .mypage {
 
 nav .square_btn {
     display: inline-block;
+    color: white;
+}
+
+/* 
+nav .square_btn {
+    display: inline-block;
     padding: 0.5em 1em;
     text-decoration: none;
     background: #f7f7f7;
     border-left: solid 6px #7EC2C2;
-    /*左線*/
     color: #7EC2C2;
-    /*文字色*/
     font-weight: bold;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.29);
 }
@@ -167,7 +179,7 @@ nav .square_btn:hover {
 nav .square_btn:active {
     box-shadow: inset 0 0 2px rgba(128, 128, 128, 0.1);
     transform: translateY(2px);
-}
+} */
 
 
 #index_manga ul.horizontal-list {
@@ -242,9 +254,10 @@ nav .square_btn:active {
 */
 
 
-
+/*背景色*/
 body {
-    background-color: #FFF4E1;
+    /* background-color: #FFF4E1; */
+    background-color: rgb(36, 36, 36);
 }
 
 .date {
@@ -388,6 +401,7 @@ footer {
 .list_label {
     text-overflow: ellipsis;
     white-space: nowrap;
+    color: white;
 }
 
 .list_img {}
@@ -405,6 +419,7 @@ footer {
     padding: 10px 5px;
     margin: 10px 0;
     cursor: pointer;
+    color: white;
     font-size: 16px;
 }
 
@@ -417,7 +432,7 @@ footer {
     width: 100%;
     height: 100%;
     content: ' ';
-    border: 2px solid #E67A7A;
+    border: 1.5px solid rgb(255, 78, 8);
 }
 
 .cp_ipcheck input[type='checkbox']+label::before {
@@ -431,7 +446,7 @@ footer {
 .cp_ipcheck input[type='checkbox']:checked+label::before {
     width: 100%;
     height: 100%;
-    background: #E67A7A;
+    background: rgb(255, 78, 8);
 }
 
 /* Transition */

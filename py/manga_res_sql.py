@@ -51,7 +51,7 @@ def jampplusGet():
     title_a_list = []
     for link in soup.select('.series-list-item > a'):
         title_a_list.append(link.get('href'))
-
+        time.sleep(0.1)
     json = []
     titles = []
 

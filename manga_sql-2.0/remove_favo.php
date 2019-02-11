@@ -13,7 +13,7 @@
             $resultShow = $mysqli->query($sql);
             if($resultShow->num_rows > 0){
                 echo"<div class='container' style='margin-bottom:120px'>";
-                echo"<div class='h3 mt-5'>削除する作品を選択</div>";
+                echo"<div class='h3 mt-5 white'>削除する作品を選択</div>";
                 echo"<form method='post' action='auth.php'>";
                     echo "<div class='cp_ipcheck mb-5'>";
                         foreach($json as $item){//jsonを巡回
@@ -62,7 +62,7 @@
 </head>
 
 <body>
-    <div class='top pt-2 pb-2' id="header">
+    <!-- <div class='top pt-2 pb-2' id="header">
         <nav class="navbar justify-content-between sticky-top">
             <div class="logo ml-4">
                     <a href="index.php">新着WEBマンガ</a>
@@ -76,7 +76,10 @@
                 <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
             </div>
         </nav>
-    </div>
+    </div> -->
+    <?php
+        require("php/header.php");
+    ?>
     
     <div id="main">
         <?php

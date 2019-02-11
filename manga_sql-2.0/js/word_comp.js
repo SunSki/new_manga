@@ -1,3 +1,4 @@
+//ディスプレイサイズが500以内の18文字以上の文字列を置き換える
 w = screen.width;
 if (w < 500) {
     var labels = document.getElementsByClassName('list_label');

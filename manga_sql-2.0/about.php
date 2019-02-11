@@ -37,7 +37,7 @@
 
     <div class="container" id="main">
         <div class="bg-light p-4 m-4 rounded">
-            <div class="h2">新着WEBマンガとは？</div>
+            <div class="h2">Wevcomixとは？</div>
             <hr>
             <div>
                 <div class="mb-1 h4">概要</div>
@@ -52,6 +52,7 @@
                         <span><a href="https://web-ace.jp/youngaceup/contents/">ヤングエースUP</a></span>のみ対応しています。
                     </li>
                     <li><a href="log-reg.php">ログイン</a>して、お気に入りにマンガを登録して見ることができます。</li>
+                    <li>Webじゃないよ、Wevだよ。</li>
                     <li>このページ作ったけど、多分ほとんど誰も見ない。</li>
                 </ul>
                 <div class="mt-3 mt-4 mb-2 h4">使用言語</div>
