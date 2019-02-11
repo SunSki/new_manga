@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>新着WEBマンガ一覧</title>
+    <title>Wevcomix</title>
 
     <?php
         require('php/head.php');

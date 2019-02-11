@@ -1,7 +1,5 @@
 <?php
-echo"<footer id='footer'>".
-        "<div class='container'>".
-            "<a href='about.php' class='about-site'>このサイトについて</a>".
-        "</div>".
+echo"<footer class='mt-3' id='footer'>".
+        "<a href='about.php' class='about-site ml-4'>このサイトについて</a>".
     "</footer>";
 ?>

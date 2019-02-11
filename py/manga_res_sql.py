@@ -8,7 +8,7 @@ import json
 import collections as cl
 
 import re  # 正規表現
-from time import sleep
+import time
 from datetime import datetime
 
 import sqlite3
@@ -51,7 +51,6 @@ def jampplusGet():
     title_a_list = []
     for link in soup.select('.series-list-item > a'):
         title_a_list.append(link.get('href'))
-        time.sleep(0.1)
     json = []
     titles = []
 
@@ -90,11 +89,11 @@ def jampplusGet():
                 print('重複:' + title.text)
         else:
             print('ダメ')
-        sleep(0.1)
+        time.sleep(0.1)
 
     print('finished')
 
-    sleep(1)
+    time.sleep(1)
     return sort_date(json)
 
 # tonari
@@ -131,10 +130,10 @@ def tonariGet():
                     json.append(
                         to_json(title, results[1], date, 'tonari', img, detail))
         i += 1
-        sleep(0.1)
+        time.sleep(0.1)
 
     print('finish')
-    sleep(1)
+    time.sleep(1)
 
     return sort_date(json)
 
@@ -179,9 +178,9 @@ def youngGet():
             print(date)
             print(img)
             json.append(to_json(title, link, date, 'young', img, detail))
-            sleep(0.1)
+            time.sleep(0.1)
     print('finish')
-    sleep(1)
+    time.sleep(1)
     return sort_date(json)
 # GETの実装
 
