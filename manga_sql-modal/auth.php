@@ -133,8 +133,7 @@
                     }
                 echo "</ul>";####1閉じる ul
             echo "</div>";
-            echo "<hr>";
-            echo "<div><a href='remove_favo.php' class='del-btn ml-4'>マイリスト削除ページ</a></div>";
+            
             }else{
                 echo "<div class='favo-top mb-4 ml-4 mr-4 h4 p-2 favo-add-top .rounded'>マイリストに追加すると作品が表示されます</div>";
             }
