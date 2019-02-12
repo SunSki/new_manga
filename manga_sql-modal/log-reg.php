@@ -9,7 +9,7 @@
     ?>
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://code.jquery.com/jquery-migrate-3.0.1.min.js' integrity='sha256-F0O1TmEa4I8N24nY0bya59eP6svWcshqX1uzwaWC4F4='crossorigin='anonymous'></script>
-    <script src='js/iziModal.js'></script>";
+    <script src='js/iziModal.js'></script>
     <script src='js/up.js'></script>
     <script src='js/fade.js'></script>
 </head>
@@ -42,21 +42,6 @@
                 <div>
                     <div class="h5 mb-5" style="color:white">初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
                 </div>
-
-                <!-- <?php
-                    $sql = "select * from users";
-                    $result = $mysqli->query($sql);
-                    echo "<ユーザー一覧><br>";
-                    if ($result) { //実行結果が正しければ
-                        while ($row = $result->fetch_assoc()) {
-                            echo $row["name"] . "<br>";
-                        }
-                        // 結果セットを閉じる
-                        $result->close();
-                    }else{
-                        echo "なし";
-                    }
-                ?> -->
 
             </div>
             <div class="col-sm-2"></div>

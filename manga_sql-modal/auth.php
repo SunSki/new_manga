@@ -25,22 +25,6 @@
             return "(". $week[$w] . ")";
         }
         
-        #お気に入り追加ボタンが押された時
-        function addFavo($mysqli){
-            if(!empty($_POST["addFavo"])){
-                $addFavo_list = $_POST["addFavo"];
-                $name = $_SESSION['name'];
-                foreach($addFavo_list as $favoTitle){
-                    $sql = "select * from favo where name = '$name' and title = '$favoTitle'";
-                    $resultCheck = $mysqli->query($sql);
-                    if ($resultCheck->num_rows == 0){   #何か選択されていたら
-                        $sql = "insert into favo (name, title) values ('$name', '$favoTitle')";
-                        $resultAdd = $mysqli->query($sql);
-                    }
-                    $resultCheck->close();
-                }
-            }
-        }
         #お気に入り消去ボタンが押された時
         function removeFavo($mysqli){
             if(!empty($_POST["removeFavo"])){
@@ -152,40 +136,8 @@
             echo "<hr>";
             echo "<div><a href='remove_favo.php' class='del-btn ml-4'>マイリスト削除ページ</a></div>";
             }else{
-                echo "<div class='favo-top mb-4 ml-4 mr-4 h4 p-2 favo-add-top .rounded'>マイリストに作品を追加</div>";
+                echo "<div class='favo-top mb-4 ml-4 mr-4 h4 p-2 favo-add-top .rounded'>マイリストに追加すると作品が表示されます</div>";
             }
-        }
-
-        function favo_input($res,$mysqli){
-            $name = $_SESSION['name'];
-            $site = $res[0]->site;
-
-            //echo "<hr>";
-            echo "<div class='cp_ipcheck ml-4 mr-4 mb-5'>";//チェックボックスのデザイン
-            foreach($res as $item){
-                $title = $item->title;
-                $sql = "select * from favo where name = '$name' and title = '$title'";
-                $resultFavo = $mysqli->query($sql);
-                if($resultFavo){
-                    if($resultFavo->num_rows == 0){
-                        $link = $item->link;
-                        $date = $item->date;
-                        $img = $item->img;
-                        $site = $item->site;
-                        $detail = $item->detail;
-                            echo "<div class='list_item'>";
-                                echo "<a href='${link}'><img src='${img}' width='40px' class='mr-1 list_img'></a>";
-                                echo "<input type='checkbox' name='addFavo[]' value='${title}' class='option-input' id='${link}'>";
-                                echo "<label for='${link}' class='list_label'>${title}</label>";
-                            echo "</div>";
-                    }
-                    $resultFavo->close();
-                }
-            }
-            echo "</div>";
-
-            echo"<script src='js/word_comp.js'></script>";
-
         }
 
         function userShow($name,$mysqli){
@@ -193,21 +145,11 @@
 
             #ボタンが押された時の処理
             removeFavo($mysqli);
-            addFavo($mysqli);
 
             #ユーザーのお気に入りを表示
             showFavo($mysqli, $res_all);
 
             echo "<hr>";
-
-            echo "<form method='post' action='auth.php' class='work-list'>";
-                echo "<h4 class='mb-4 ml-4 pt-4 white border-top-w-5'>リストに追加する作品を選択</h4>";
-                echo "<div>";
-                    favo_input($res_all_sort,$mysqli);
-                echo "</div>";
-                echo"<div class='text-center ml-4'><input type='submit' value='マイリストに追加' id='add' class='favo-btn '></div>";            
-            echo"</form>";
-        
         }
 
         session_start();//セッション開始
@@ -291,7 +233,7 @@
     </div>
     
     <?php
-        require('php/footer.php');
+        require('php/footer-fix.php');
     ?>
 
 </body>

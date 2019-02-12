@@ -136,9 +136,27 @@
         function logo($img,$url){
             echo "<p><a href='${url}'><img src='${img}' height='30px'></a></p>";
         }
-  
-    ?>
 
+        session_start();//セッション開始
+
+        $login_state = '';
+        if(isset($_SESSION['name'])){
+            $name = $_SESSION['name'];
+            $login_state = 'in';
+            //セッション確認
+            echo"<script>";
+                echo"console.log('$name');";
+            echo"</script>";
+        }else{
+            $login_state = 'out';
+            echo"<script>";
+                echo"console.log('no session');";
+            echo"</script>";
+        }
+        
+
+        
+    ?>
 
 </head>
 
