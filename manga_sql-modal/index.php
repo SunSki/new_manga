@@ -32,6 +32,7 @@
             echo "<ul>";
 
             $id = 0;
+            $id_favo = 1000;
             foreach($res as $item){
                 $title = $item->title; //書籍のタイトル
                 $link = $item->link; //書籍のリンク
@@ -43,6 +44,7 @@
                     echo"</ul>";
                     //echo "<hr>";
 
+                    //年月日をを曜日に変換
                     $week = week($date);
                     $scroll_date = substr($date,5,5);
                     if($week == "(月)"){
@@ -69,30 +71,47 @@
                     #モーダル設定
                     echo"<script type='text/javascript'>";
                         echo"$(function () {";
-                            echo"$('.$id').iziModal();";
+                            echo"$('#$id').iziModal();";
                         echo"})";
                     echo"</script>";
 
-                    #モーダルで表示するものを設定
-                    echo"<div class='$id modal'>";
-                            echo"<img src=${img} width='100%'>";
-                            echo"<p>${title}</p>";
-                            echo"<p>${detail}</p>";
-                            if($site=='plus'){
-                                $site_name = '少年ジャンプ+';
-                            }elseif($site=='ura'){
-                                $site_name = '裏サンデー';
-                            }elseif($site=='young'){
-                                $site_name = 'ヤングエースUP';
-                            }
-                            elseif($site=='tonari'){
-                                $site_name = 'となりのヤングジャンプ';
-                            }
-                            echo"<p>${site_name}</p>";
-                            echo"<p><a href='${link}'>この作品を読む</a></p>";
-                    echo"</div>";
 
-                    echo "<a href='$link' data-izimodal-open='.$id'>";
+
+                    #モーダルで表示するものを設定
+                    echo"<div id='$id' class='modal'>";
+
+                        //お気に入り登録クリック後
+                        echo"<script type='text/javascript'>";
+                            echo"$('#$id_favo').click(function() {";
+                                echo"$(this).css('color','red');";
+                                echo"$(this).css('pointer-events','none');";
+                                echo"console.log('クリックされました！');";
+                                //ここにデータベースに追加処理をかく
+                            echo"})";
+                        echo"</script>";
+
+                        echo"<img src=${img} width='100%'>";
+                        echo"<p>${title}</p>";
+                        echo"<p>${detail}</p>";
+                        if($site=='plus'){
+                            $site_name = '少年ジャンプ+';
+                        }elseif($site=='ura'){
+                            $site_name = '裏サンデー';
+                        }elseif($site=='young'){
+                            $site_name = 'ヤングエースUP';
+                        }
+                        elseif($site=='tonari'){
+                            $site_name = 'となりのヤングジャンプ';
+                        }
+                        echo"<p>${site_name}</p>";
+                        echo"<a id='${id_favo}'>マイリストに追加</a>";
+                        echo"<p><a href='${link}'>この作品を読む</a></p>";
+                    echo"</div>";
+                    
+
+                    
+                    //サムネイル
+                    echo "<a href='$link' data-izimodal-open='#$id'>";
                         echo "<div class='title'>";
                             echo "<div><img src='${img}' class='shadow-sm' width='100%' height='120px'></div>";
                             if($site == "young" || $site == "ura"){
@@ -107,6 +126,7 @@
 
                 echo"</li>";
                 $id+=1;
+                $id_favo+=1;
             }
             echo"</ul>";
             echo"</div>";

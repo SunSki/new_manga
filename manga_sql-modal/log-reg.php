@@ -49,7 +49,7 @@
                     echo "<ユーザー一覧><br>";
                     if ($result) { //実行結果が正しければ
                         while ($row = $result->fetch_assoc()) {
-                        echo $row["name"] . "<br>";
+                            echo $row["name"] . "<br>";
                         }
                         // 結果セットを閉じる
                         $result->close();

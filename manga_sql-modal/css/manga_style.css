@@ -313,6 +313,7 @@ footer {
 
 .modal a {
     color: black;
+    cursor: pointer;
 }
 
 .favo-btn {

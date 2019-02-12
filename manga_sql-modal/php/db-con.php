@@ -15,4 +15,6 @@
     } else {
         $mysqli->set_charset("utf8"); //文字コードを設定
     }
+
+    
 ?>
