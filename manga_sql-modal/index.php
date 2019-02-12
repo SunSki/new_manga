@@ -7,9 +7,21 @@
 
     
     <?php   #初期設定
+        ini_set('display_errors', 1);
         require('php/head.php');
         date_default_timezone_set('Asia/Tokyo');
+        require('php/db-pdo.php');
+
+        session_start();//セッション開始
+        if(isset($_SESSION['name'])){
+            $name = $_SESSION['name'];
+            echo"<script>console.log('$name')</script>";
+        }else{
+            echo"<script>console.log('no login')</script>";
+        }
+        
     ?>
+
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://code.jquery.com/jquery-migrate-3.0.1.min.js' integrity='sha256-F0O1TmEa4I8N24nY0bya59eP6svWcshqX1uzwaWC4F4='crossorigin='anonymous'></script>
     <script src='js/iziModal.js'></script>
@@ -18,6 +30,7 @@
 
 
     <?php
+        
         function week ($date){
             $datetime = new DateTime($date);
             $week = array("日", "月", "火", "水", "木", "金", "土");
@@ -82,12 +95,29 @@
 
                         //お気に入り登録クリック後
                         echo"<script type='text/javascript'>";
+                            //データベースに追加
                             echo"$('#$id_favo').click(function() {";
-                                echo"$(this).css('color','red');";
-                                echo"$(this).css('pointer-events','none');";
-                                echo"console.log('クリックされました！');";
-                                //ここにデータベースに追加処理をかく
+                                if(isset($_SESSION['name'])){
+                                    $name = $_SESSION['name'];
+                                    echo"$(this).css('color','red');";
+                                    echo"$(this).css('pointer-events','none');";
+                                    echo"$.ajax({".
+                                        "url:'php/favo.php',".
+                                        "type:'POST',".
+                                        "dataType:'json',".
+                                        "data:{post_name:'$name', post_title:'$title'},".
+                                        "error:function(XMLHttpRequest, textStatus, errorThrown) {".
+                                            "console.log('ajax通信に失敗しました');".
+                                        "},".
+                                        "success:function(response){".
+                                            "console.log('ajax通信に成功しました');".
+                                            "console.log(response[0]);".
+                                            "console.log(response[1]);".
+                                        "}".
+                                    "});";
+                                }
                             echo"})";
+
                         echo"</script>";
 
                         echo"<img src=${img} width='100%'>";
@@ -104,7 +134,12 @@
                             $site_name = 'となりのヤングジャンプ';
                         }
                         echo"<p>${site_name}</p>";
-                        echo"<a id='${id_favo}'>マイリストに追加</a>";
+
+                        // echo"<form action='./' method='POST'>";
+                        //     echo"<input type='submit' value='マイリストに追加' name='favo' id='${id_favo}' class='favo' />";
+                        // echo"</form>";
+                        echo"<a id='${id_favo}' class='favo'>マイリストに追加</a>";
+
                         echo"<p><a href='${link}'>この作品を読む</a></p>";
                     echo"</div>";
                     
@@ -136,25 +171,6 @@
         function logo($img,$url){
             echo "<p><a href='${url}'><img src='${img}' height='30px'></a></p>";
         }
-
-        session_start();//セッション開始
-
-        $login_state = '';
-        if(isset($_SESSION['name'])){
-            $name = $_SESSION['name'];
-            $login_state = 'in';
-            //セッション確認
-            echo"<script>";
-                echo"console.log('$name');";
-            echo"</script>";
-        }else{
-            $login_state = 'out';
-            echo"<script>";
-                echo"console.log('no session');";
-            echo"</script>";
-        }
-        
-
         
     ?>
 
@@ -171,7 +187,6 @@
             manga_show($res_all);
         ?>
     </div>
-
 
     <?php
         require("php/footer.php");
