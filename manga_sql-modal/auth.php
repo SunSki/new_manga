@@ -27,26 +27,11 @@
         
         #お気に入り消去ボタンが押された時
         function removeFavo($mysqli){
-            if(!empty($_POST["removeFavo"])){
+            if(!empty($_GET["removeFavo"])){
                 $name = $_SESSION['name'];
-                $removeFavo_list = $_POST["removeFavo"];
-                foreach($removeFavo_list as $favoTitle){
-                    $sql = "delete from favo where name = '$name' and title = '$favoTitle'";
-                    $resultCheck = $mysqli->query($sql);
-                }
+                $favoTitle = $_GET["removeFavo"];
+                $sql = "delete from favo where name = '$name' and title = '$favoTitle'";
                 $resultCheck = $mysqli->query($sql);
-            }
-        }
-
-        function siteImg($site){
-            if($site == 'plus'){
-                return 'img/jumpplus_red.png';
-            }elseif($site == 'tonari'){
-                return 'img/tonari.png';
-            }elseif($site == 'young'){
-                return 'img/youngaceup-logo.png';
-            }else{
-                return '';
             }
         }
 
@@ -74,6 +59,9 @@
             if($resultShow->num_rows > 0){
                 echo "<div class='favo-top mb-4 ml-4 white'><a href='auth.php'>${name}のリスト</a></div>";
                 echo "<div class='manga-list' id='user-favo'>";
+
+                    $id = 0;
+                    $id_favo = 1000;
                     foreach($json as $item){//jsonを巡回
                         $jsonTitle = $item->title;
                         $img = $item->img;
@@ -113,27 +101,68 @@
                                 }
                                 $date_now = $date;
 
-                                echo "<li class='item mr-5'>";
-                                    echo "<a href='${link}'>";
+                                echo "<li class='item mr-3'>";
+
+                                    #モーダル設定
+                                    echo"<script type='text/javascript'>";
+                                        echo"$(function () {";
+                                            echo"$('#$id').iziModal();";
+                                        echo"})";
+                                    echo"</script>";
+
+                                    #モーダルで表示するものを設定
+                                    echo"<div id='$id' class='modal'>";
+
+                                        echo"<img src=${img} width='100%'>";
+                                        echo"<p>${title}</p>";
+                                        echo"<p>${detail}</p>";
+                                        if($site=='plus'){
+                                            $site_name = '少年ジャンプ+';
+                                        }elseif($site=='ura'){
+                                            $site_name = '裏サンデー';
+                                        }elseif($site=='young'){
+                                            $site_name = 'ヤングエースUP';
+                                        }
+                                        elseif($site=='tonari'){
+                                            $site_name = 'となりのヤングジャンプ';
+                                        }
+                                        echo"<p>${site_name}</p>";
+                                        //削除ボタン 
+                                        echo"<form method='get' action='auth.php'>";
+                                            echo "<button type='submit' value='$title' name='removeFavo'>マイリストから削除</button>";
+                                        echo"</form>";
+
+                                        echo"<p><a href='${link}'>この作品を読む</a></p>";
+
+                                    echo"</div>";
+
+
+                                    //サムネイルの表示
+                                    echo "<a href='${link}' data-izimodal-open='#$id'>";
                                         echo "<div class='title'>";
                                             echo "<div><img src='${img}' class='shadow-sm' width='100%'></div>";
-                                            if($site == "young"){
+                                            if($site == "young" || $site == "ura"){
                                                 echo "<div class='title'>${title}${detail}</div>";
                                             }else{
                                                 echo "<div class='title'>${detail}</div>";
                                             }
                                         echo "</div>";
                                     echo"</a>";
+
+
+
                                 echo"</li>";
 
                                 break;
                             }
                         }
-                        $resultShow->close();    
+                        $resultShow->close();
+                        $id+=1;
+                        $id_favo+=1;
                     }
                 echo "</ul>";####1閉じる ul
             echo "</div>";
-            
+
             }else{
                 echo "<div class='favo-top mb-4 ml-4 mr-4 h4 p-2 favo-add-top .rounded'>マイリストに追加すると作品が表示されます</div>";
             }

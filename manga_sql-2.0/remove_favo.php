@@ -19,6 +19,7 @@
                         foreach($json as $item){//jsonを巡回
                             $jsonTitle = $item->title;
                             $resultShow = $mysqli->query($sql);
+                            
                             while ($row = $resultShow->fetch_assoc()){//データベースを巡回
                                 $title = $row["title"];
                                 if($title==$jsonTitle){

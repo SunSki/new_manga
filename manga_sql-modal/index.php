@@ -117,7 +117,6 @@
                                     "});";
                                 }
                             echo"})";
-
                         echo"</script>";
 
                         echo"<img src=${img} width='100%'>";
@@ -134,10 +133,7 @@
                             $site_name = 'となりのヤングジャンプ';
                         }
                         echo"<p>${site_name}</p>";
-
-                        // echo"<form action='./' method='POST'>";
-                        //     echo"<input type='submit' value='マイリストに追加' name='favo' id='${id_favo}' class='favo' />";
-                        // echo"</form>";
+                        
                         echo"<a id='${id_favo}' class='favo'>マイリストに追加</a>";
 
                         echo"<p><a href='${link}'>この作品を読む</a></p>";
