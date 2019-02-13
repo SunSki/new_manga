@@ -138,9 +138,9 @@
 
 
                                     //サムネイルの表示
-                                    echo "<a href='${link}' data-izimodal-open='#$id'>";
+                                    echo "<a href='${link}' class='thumbnail' data-izimodal-open='#$id'>";
                                         echo "<div class='title'>";
-                                            echo "<div><img src='${img}' class='shadow-sm' width='100%'></div>";
+                                            echo "<div><img src='${img}' class='shadow-sm' width='100%' height='160px'></div>";
                                             if($site == "young" || $site == "ura"){
                                                 echo "<div class='title'>${title}${detail}</div>";
                                             }else{
@@ -223,7 +223,10 @@
         <?php
             if($state == 0){//ログイン
                 userShow($name,$mysqli);
-                require('php/footer-fix.php');
+                echo"<div class='mt-5'>";
+                    require('php/footer-fix.php');
+                echo"</div>";
+                
             }
             elseif($state == 1){//ユーザー名なし
                 echo "<div class='container text-center'>";
@@ -234,7 +237,9 @@
             }
             elseif($state == 2){//セッションあり
                 userShow($name,$mysqli);
-                require('php/footer-fix.php');
+                echo"<div class='mt-5'>";
+                    require('php/footer-fix.php');
+                echo"</div>";
             }
             else{//ログインしてください
                 echo "<div class='container text-center'>";

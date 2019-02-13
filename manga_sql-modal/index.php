@@ -131,23 +131,30 @@
                         echo"</script>";
 
                         echo"<img src=${img} width='100%'>";
-                        echo"<p>${title}</p>";
-                        echo"<p>${detail}</p>";
+                        
                         if($site=='plus'){
                             $site_name = '少年ジャンプ+';
+                            $site_url = 'https://shonenjumpplus.com/';
                         }elseif($site=='ura'){
                             $site_name = '裏サンデー';
+                            $site_url = 'https://urasunday.com/';
+                            echo"<div class='ml-2 mt-2'>${title}</div>";
                         }elseif($site=='young'){
                             $site_name = 'ヤングエースUP';
+                            $site_url = 'https://web-ace.jp/youngaceup/';
+                            echo"<div class='ml-2 mt-2'>${title}</div>";
                         }
                         elseif($site=='tonari'){
                             $site_name = 'となりのヤングジャンプ';
+                            $site_url = 'https://tonarinoyj.jp/';
                         }
-                        echo"<p>${site_name}</p>";
+                        echo"<div class='ml-2 mt-2'>${detail}</div>";
 
-                        echo"<a id='${id_favo}' class='favo'>マイリストに追加</a>";
-
-                        echo"<p><a href='${link}'>この作品を読む</a></p>";
+                        echo"<div class='ml-2 mt-2'><a href='${site_url}'>${site_name}</a></div>";
+                        echo"<hr>";
+                        echo"<div class='ml-2 mt-3'><a id='${id_favo}' class='favo'>マイリストに追加</a></div>";
+                        echo"<hr>";
+                        echo"<div class='ml-2 mt-3 mb-3'><a href='${link}'>この作品を読む</a></div>";
                     echo"</div>";
                     
 
