@@ -164,6 +164,8 @@
             echo "</div>";
 
             }else{
+                $user_name = $_SESSION['name'];
+                echo "<div class='white ml-4 mt-4 h4'>ようこそ${user_name}さん</div>";
                 echo "<div class='favo-top mb-4 ml-4 mr-4 h4 p-2 favo-add-top .rounded'>マイリストに追加すると作品が表示されます</div>";
             }
         }
@@ -211,23 +213,7 @@
 </head>
 
 <body>
-    <!-- ログインの有無でユーザー名を表示するか決める -->
-    <!-- <div class='top pt-2 pb-2' id="header">
-        <nav class="navbar justify-content-between sticky-top">
-            <div class="logo ml-4">
-                    <a href="index.php">新着WEBマンガ</a>
-            </div>
-            <div class="text-left ml-4 mr-4 mypage-head">
-                <?php
-                    if($state == 0 or $state == 2){
-                        $name = $_SESSION['name'];
-                        echo"<a href='auth.php' class='mypage mr-3'>${name}のページ</a>";
-                    }
-                ?>
-                <a href="log-reg.php" class="square_btn">ログイン & 登録</a>
-            </div>
-        </nav>
-    </div> -->
+
     <?php
         require('php/header.php');
     ?>
@@ -237,32 +223,29 @@
         <?php
             if($state == 0){//ログイン
                 userShow($name,$mysqli);
+                require('php/footer-fix.php');
             }
             elseif($state == 1){//ユーザー名なし
                 echo "<div class='container text-center'>";
                     echo "<div class='h2 mt-5 mb-3 white'>ユーザー名がありません</div>";
-                    echo "<div><img src='img/not_found.png' width='60%'></div>";
+                    echo"<iframe class='youtube mt-3' src='https://www.youtube.com/embed/L5HBVl5YYlU' frameborder='0' allowfullscreen></iframe>";
                     echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
-                require('php/footer-fix.php');
             }
             elseif($state == 2){//セッションあり
                 userShow($name,$mysqli);
+                require('php/footer-fix.php');
             }
             else{//ログインしてください
                 echo "<div class='container text-center'>";
                     echo "<div class='h2 mt-5 mb-3 white'>ログインして下さい</div>";
-                    echo "<div><img src='img/not_found.png' width='60%'></div>";
+                    echo "<iframe class='youtube mt-3' src='https://www.youtube.com/embed/L5HBVl5YYlU' frameborder='0' allowfullscreen></iframe>";
                     echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
-                require('php/footer-fix.php');
             }
         ?>
     </div>
     
-    <?php
-        require('php/footer-fix.php');
-    ?>
 
 </body>
 

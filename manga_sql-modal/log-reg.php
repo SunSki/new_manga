@@ -20,27 +20,37 @@
     ?>
 
     <div class="container" id="main">
+
         <div class="row mt-5">
             <div class="col-sm-2"></div>
             <div class="col-sm-8">
-                <div class="mb-5 p-5 shadow log-reg-box">
+                <?php
+                    session_start();//セッション開始
+                    if(isset($_SESSION['name'])){
+                        $name = $_SESSION['name'];
+                        echo"<div class='white ml-4 mb-3'>すでに${name}でログインしています</div>";
+                    }else{
+                    }
+                ?>
+                <div class="mb-5 pt-3 pb-3 pr-5 pl-5 log-reg-box">
                     <form action="auth.php" method="post">
                         <h3 class='white'>ログイン</h3>
-                        <input type="text" name="login" class="input">
+                        <input maxlength='10' type="text" name="login" class="input" autofocus>
                         <input type="submit" value="Login" class="log-reg-input mt-3">
                     </form>
                 </div>
                 
-                <div class="mb-5 p-5 shadow log-reg-box">
+                <div class="mb-5 pt-3 pb-3 pr-5 pl-5 shadow log-reg-box">
                     <form action="reg.php" method="post">
                         <h3 class='white'>登録</h3>
-                        <input type="text" name="reg" class="input">
+                        <input maxlength='10' type="text" name="reg" class="input">
+
                         <input type="submit" value="Registration" class="log-reg-input mt-3">
                     </form>
                 </div>
 
                 <div>
-                    <div class="h5 mb-5" style="color:white">初回で登録してログインすると、<br>次回からMyページでログインできます。</div>
+                    <div class="h5 mb-5" style="color:white">ユーザー登録すると、<br>次回からログイン不要です。</div>
                 </div>
 
             </div>

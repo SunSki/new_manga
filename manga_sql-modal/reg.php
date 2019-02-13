@@ -37,26 +37,22 @@
                     echo "</div>";
                 }else{
                     echo "<div class='container text-center'>";
-                        echo "<div class='h2 mt-5 mb-3' style='color:white'>その名前はすでに登録されています</div>";
-                        echo "<div><img src='img/not_found.png' width='60%'></div>";
+                        echo "<div class='h3 mt-5 mb-3' style='color:white'>その名前はすでに登録されています</div>";
+                        echo "<iframe class='youtube mt-3' src='https://www.youtube.com/embed/L5HBVl5YYlU' frameborder='0' allowfullscreen></iframe>";
                         echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                     echo "</div>";
                 }
                 $result->close(); // 結果セットを閉じる
             }else{
                 echo "<div class='container text-center'>";
-                    echo "<div class='h2 mt-5 mb-3' style='color:white'>名前を入力してください</div>";
-                    echo "<div><img src='img/not_found.png' width='60%'></div>";
+                    echo "<div class='h3 mt-5 mb-3' style='color:white'>名前を入力してください</div>";
+                    echo "<iframe class='youtube mt-3' src='https://www.youtube.com/embed/L5HBVl5YYlU' frameborder='0' allowfullscreen></iframe>";
                     echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
-                require('php/footer-fix.php');
             }
             echo"</div>";
         ?>
     </div>
-    <?php
-        require('php/footer-fix.php');
-    ?>
 </body>
 
 <?php

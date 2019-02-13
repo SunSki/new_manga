@@ -24,6 +24,7 @@
 
     <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
     <script src='https://code.jquery.com/jquery-migrate-3.0.1.min.js' integrity='sha256-F0O1TmEa4I8N24nY0bya59eP6svWcshqX1uzwaWC4F4='crossorigin='anonymous'></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src='js/iziModal.js'></script>
     <script src='js/up.js'></script>
     <!-- <script src='js/fade.js'></script> -->
@@ -38,7 +39,7 @@
             return "(". $week[$w] . ")";
         }
 
-        function manga_show($res){
+        function manga_show($res,$pdo){
             $today = date("Y/m/d");
             $date_now ='';
             echo "<div id='index_manga'>";
@@ -99,22 +100,32 @@
                             echo"$('#$id_favo').click(function() {";
                                 if(isset($_SESSION['name'])){
                                     $name = $_SESSION['name'];
-                                    echo"$(this).css('color','red');";
-                                    echo"$(this).css('pointer-events','none');";
-                                    echo"$.ajax({".
-                                        "url:'php/favo.php',".
-                                        "type:'POST',".
-                                        "dataType:'json',".
-                                        "data:{post_name:'$name', post_title:'$title'},".
-                                        "error:function(XMLHttpRequest, textStatus, errorThrown) {".
-                                            "console.log('ajax通信に失敗しました');".
-                                        "},".
-                                        "success:function(response){".
-                                            "console.log('ajax通信に成功しました');".
-                                            "console.log(response[0]);".
-                                            "console.log(response[1]);".
-                                        "}".
-                                    "});";
+                                    $stmt = $pdo->query("SELECT COUNT(*) FROM favo WHERE name='$name' AND title='$title'");
+                                    $count = $stmt->fetchColumn();
+                                    if($count == 0){
+                                        echo"$(this).css('color','red');";
+                                        echo"$(this).css('pointer-events','none');";
+                                        echo"$.ajax({".
+                                            "url:'php/favo.php',".
+                                            "type:'POST',".
+                                            "dataType:'json',".
+                                            "data:{post_name:'$name', post_title:'$title'},".
+                                            "error:function(XMLHttpRequest, textStatus, errorThrown) {".
+                                                "console.log('ajax通信に失敗しました');".
+                                            "},".
+                                            "success:function(response){".
+                                                "console.log('ajax通信に成功しました');".
+                                                "console.log(response[0]);".
+                                                "console.log(response[1]);".
+                                            "}".
+                                        "});";
+
+                                        echo"swal('Good job!', 'マイリストに追加しました。', 'success');";
+                                    }else{
+                                        echo"swal('Error','すでに追加されています。','error');";
+                                    }
+                                }else{
+                                    echo"swal('Error','登録すると追加できます。','error');";
                                 }
                             echo"})";
                         echo"</script>";
@@ -133,7 +144,7 @@
                             $site_name = 'となりのヤングジャンプ';
                         }
                         echo"<p>${site_name}</p>";
-                        
+
                         echo"<a id='${id_favo}' class='favo'>マイリストに追加</a>";
 
                         echo"<p><a href='${link}'>この作品を読む</a></p>";
@@ -180,7 +191,8 @@
     ?>
     <div class="manga-list" id="main">
         <?php
-            manga_show($res_all);
+            require('php/db-pdo.php');
+            manga_show($res_all,$pdo);
         ?>
     </div>
 
