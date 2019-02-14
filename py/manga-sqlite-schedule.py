@@ -218,7 +218,7 @@ def job():
     conn.close()
 
 
-schedule.every().day.at("00:10").do(job)
+schedule.every().day.at("01:34").do(job)
 schedule.every().day.at("11:10").do(job)
 
 while True:

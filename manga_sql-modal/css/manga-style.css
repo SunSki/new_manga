@@ -232,17 +232,6 @@ a:hover {
     color: #FF9800;
 }
 
-/* 
-#FFEB3B
-#F44336
-#2196F3
-#4CAF50
-#9C27B0
-#795548
-#FF9800 
-*/
-
-
 /*背景色*/
 body {
     /* background-color: #FFF4E1; */
@@ -298,6 +287,14 @@ footer {
 .about-site {
     color: rgb(231, 89, 64);
     font-weight: bold;
+}
+
+.about .wevcomix {
+    color: rgb(231, 89, 64);
+}
+
+.about a:hover {
+    color: rgb(231, 89, 64);
 }
 
 

@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-    <title>ユーザー登録完了画面</title>
+    <title>Wevcomix</title>
 
     <?php
         require('php/head.php');
@@ -38,7 +38,7 @@
                 }else{
                     echo "<div class='container text-center'>";
                         echo "<div class='h3 mt-5 mb-3' style='color:white'>その名前はすでに登録されています</div>";
-                        echo "<iframe class='youtube mt-3' src='https://www.youtube.com/embed/L5HBVl5YYlU' frameborder='0' allowfullscreen></iframe>";
+                        //echo "<iframe class='youtube mt-3' src='https://www.youtube.com/embed/L5HBVl5YYlU' frameborder='0' allowfullscreen></iframe>";
                         echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                     echo "</div>";
                 }
@@ -46,7 +46,7 @@
             }else{
                 echo "<div class='container text-center'>";
                     echo "<div class='h3 mt-5 mb-3' style='color:white'>名前を入力してください</div>";
-                    echo "<iframe class='youtube mt-3' src='https://www.youtube.com/embed/L5HBVl5YYlU' frameborder='0' allowfullscreen></iframe>";
+                    //echo "<iframe class='youtube mt-3' src='https://www.youtube.com/embed/L5HBVl5YYlU' frameborder='0' allowfullscreen></iframe>";
                     echo "<div class='mt-5 not-found-btn'><a href='log-reg.php'>ログイン & 登録ページ</a></div>";
                 echo "</div>";
             }

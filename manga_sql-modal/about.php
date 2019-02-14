@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>新着WEBマンガ一覧</title>
+    <title>Wevcomix</title>
     <?php
         require('php/head.php');
     ?>
@@ -41,14 +41,14 @@
         require('php/header.php');
     ?>
 
-    <div class="container" id="main">
+    <div class="container about" id="main">
         <div class="bg-light p-4 m-4 rounded">
-            <div class="h2">Wevcomixとは？</div>
+            <div class="h2"><span class="wevcomix">Wevcomix</span>とは？</div>
             <hr>
             <div>
                 <div class="mb-1 h4">概要</div>
                 <ul class="ml-4">
-                    <li>複数の公式WEBマンガサイトの新着マンガを、いい感じに読めるサービス</li>
+                    <li>新着の公式WEBマンガサイトをまとめて、いい感じに読めるサービス</li>
                     <li>現在は
                         <span><a href="https://shonenjumpplus.com/series">少年ジャンプ+</a></span>、
                         <span><a href="https://tonarinoyj.jp/series">となりのヤングジャンプ</a></span>、
@@ -60,6 +60,21 @@
                     <li><a href="log-reg.php">ログイン</a>して、お気に入りにマンガを登録して見ることができます。</li>
                 </ul>
             </div>
+        </div>
+
+        <div class="bg-light p-4 m-4 rounded">
+            <div class="h2">お問い合わせ</div>
+            <hr>
+            <div class="h5 mb-3"><a target='_blank' href='https://docs.google.com/forms/d/e/1FAIpQLSc3Y4-rz5Wog8ITCk-kDzDAKzP2zfrLJRdKrBjtf0695UHADA/viewform'>こちらのフォームからご意見お願いします。</a></div>
+        </div>
+    
+        <div class="bg-light p-4 m-4 rounded">
+            <div class="h4">このサイトを共有</div>
+            <hr>
+            <a href="javascript:window.open('http://twitter.com/share?text='+encodeURIComponent('新着の公式WEBマンガをまとめていい感じに読める、Wevcomix。')+
+            '&url='+encodeURIComponent('wevcomix.com'),'sharewindow','width=550, height=450, personalbar=0, toolbar=0, scrollbars=1, resizable=!');">
+                <div><i class="fab fa-twitter-square fa-7x"></i></div>
+            </a>
         </div>
 
         <div class="bg-light p-4 m-4 rounded">

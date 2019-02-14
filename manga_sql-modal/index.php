@@ -131,26 +131,36 @@
                         echo"</script>";
 
                         echo"<img src=${img} width='100%'>";
-                        
-                        if($site=='plus'){
-                            $site_name = '少年ジャンプ+';
-                            $site_url = 'https://shonenjumpplus.com/';
-                        }elseif($site=='ura'){
-                            $site_name = '裏サンデー';
-                            $site_url = 'https://urasunday.com/';
-                            echo"<div class='ml-2 mt-2 h5'><strong>${title}</strong></div>";
-                        }elseif($site=='young'){
-                            $site_name = 'ヤングエースUP';
-                            $site_url = 'https://web-ace.jp/youngaceup/';
-                            echo"<div class='ml-2 mt-2 h5'><strong>${title}</strong></div>";
-                        }
-                        elseif($site=='tonari'){
-                            $site_name = 'となりのヤングジャンプ';
-                            $site_url = 'https://tonarinoyj.jp/';
-                        }
-                        echo"<div class='ml-2 mt-1'>${detail}</div>";
+                        echo"<div class='row'>";
+                            echo"<div class='col-8'>";
+                                if($site=='plus'){
+                                    $site_name = '少年ジャンプ+';
+                                    $site_url = 'https://shonenjumpplus.com/';
+                                }elseif($site=='ura'){
+                                    $site_name = '裏サンデー';
+                                    $site_url = 'https://urasunday.com/';
+                                    echo"<div class='ml-2 mt-2 h5'><strong>${title}</strong></div>";
+                                }elseif($site=='young'){
+                                    $site_name = 'ヤングエースUP';
+                                    $site_url = 'https://web-ace.jp/youngaceup/';
+                                    echo"<div class='ml-2 mt-2 h5'><strong>${title}</strong></div>";
+                                }
+                                elseif($site=='tonari'){
+                                    $site_name = 'となりのヤングジャンプ';
+                                    $site_url = 'https://tonarinoyj.jp/';
+                                }
+                                echo"<div class='ml-2 mt-1'>${detail}</div>";
+        
+                                echo"<div class='ml-2 mt-2'><a href='${site_url}'>${site_name}</a></div>";
+                            echo"</div>";
+                            echo"<div class='col-4'>";
+                            echo"<a href=\"javascript:window.open('http://twitter.com/share?text='+encodeURIComponent('新着の公式WEBマンガをまとめていい感じに読める、Wevcomix。')+'&url='+encodeURIComponent('wevcomix.com'),'sharewindow','width=550, height=450, personalbar=0, toolbar=0, scrollbars=1, resizable=!');\">";
+                                echo"<div><i class='fab fa-twitter-square fa-3x'></i></div>";
+                                echo"<div>サイトをツイート</div>";
+                            echo"</a>";
+                            echo"</div>";
+                        echo"</div>";
 
-                        echo"<div class='ml-2 mt-2'><a href='${site_url}'>${site_name}</a></div>";
                         echo"<hr>";
                         echo"<div class='ml-2 mt-3 mb-3'><a id='${id_favo}' class='favo h5'>マイリストに追加</a></div>";
                         

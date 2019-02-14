@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ログイン&登録</title>
+    <title>Wevcomix</title>
     <?php
         require('php/head.php');
         require('php/db-con.php');

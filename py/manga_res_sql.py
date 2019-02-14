@@ -8,6 +8,7 @@ import json
 import collections as cl
 
 import re  # 正規表現
+import schedule
 import time
 from datetime import datetime
 
@@ -229,8 +230,7 @@ def uraGet():
     return sort_date(json)
 
 
-if __name__ == '__main__':
-
+def job():
     # スクレイピング
     plus_res = jampplusGet()
     tonari_res = tonariGet()
@@ -273,5 +273,9 @@ if __name__ == '__main__':
     conn.commit()
     conn.close()
 
-    # resp.headers = {"Content-Type": "application/json; charset=utf-8"}
-    # resp.content = json.dumps(tonari_res, ensure_ascii=False)
+
+schedule.every().day.at("01:41").do(job)
+schedule.every().day.at("11:10").do(job)
+
+while True:
+    schedule.run_pending()
