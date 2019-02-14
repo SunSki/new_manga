@@ -92,7 +92,7 @@
 
 
                     #モーダルで表示するものを設定
-                    echo"<div id='$id' class='modal'>";
+                    echo"<div id='$id' class='modal' data-izimodal-title='${title}'>";
 
                         //お気に入り登録クリック後
                         echo"<script type='text/javascript'>";
@@ -125,7 +125,7 @@
                                         echo"swal('Error','すでに追加されています。','error');";
                                     }
                                 }else{
-                                    echo"swal('Error','登録すると追加できます。','error');";
+                                    echo"swal('Error','ログインすると追加できます。','error');";
                                 }
                             echo"})";
                         echo"</script>";
@@ -138,23 +138,23 @@
                         }elseif($site=='ura'){
                             $site_name = '裏サンデー';
                             $site_url = 'https://urasunday.com/';
-                            echo"<div class='ml-2 mt-2'>${title}</div>";
+                            echo"<div class='ml-2 mt-2 h5'><strong>${title}</strong></div>";
                         }elseif($site=='young'){
                             $site_name = 'ヤングエースUP';
                             $site_url = 'https://web-ace.jp/youngaceup/';
-                            echo"<div class='ml-2 mt-2'>${title}</div>";
+                            echo"<div class='ml-2 mt-2 h5'><strong>${title}</strong></div>";
                         }
                         elseif($site=='tonari'){
                             $site_name = 'となりのヤングジャンプ';
                             $site_url = 'https://tonarinoyj.jp/';
                         }
-                        echo"<div class='ml-2 mt-2'>${detail}</div>";
+                        echo"<div class='ml-2 mt-1'>${detail}</div>";
 
                         echo"<div class='ml-2 mt-2'><a href='${site_url}'>${site_name}</a></div>";
                         echo"<hr>";
-                        echo"<div class='ml-2 mt-3'><a id='${id_favo}' class='favo'>マイリストに追加</a></div>";
-                        echo"<hr>";
-                        echo"<div class='ml-2 mt-3 mb-3'><a href='${link}'>この作品を読む</a></div>";
+                        echo"<div class='ml-2 mt-3 mb-3'><a id='${id_favo}' class='favo h5'>マイリストに追加</a></div>";
+                        
+                        echo"<a href='${link}'><div class='pl-2 pt-3 pb-3 mt-2 h5 read-comic'>この作品を読む</div></a>";
                     echo"</div>";
                     
 

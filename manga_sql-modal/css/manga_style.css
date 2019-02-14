@@ -98,6 +98,8 @@ a:hover {
     background-color: lightslategray;
 }
 
+.favo {}
+
 .favo-top {
     margin-top: 40px;
 }
@@ -122,17 +124,17 @@ a:hover {
 }
 
 .logo a {
-    color: #E67A7A;
+    color: rgb(231, 89, 64);
     font-size: 18px;
     font-weight: bold;
 }
 
 .logo a:hover {
-    color: #E67A7A;
+    color: rgb(231, 89, 64);
 }
 
 #header {
-    background-color: #9DDCDC;
+    background-color: black;
     display: flex;
     justify-content: space-between;
 }
@@ -156,6 +158,12 @@ a:hover {
 .youtube {
     width: 80%;
     height: 250px;
+}
+
+.read-comic {
+    color: white;
+    font-weight: bold;
+    background-color: #9DDCDC;
 }
 
 
@@ -282,13 +290,13 @@ body {
 
 
 footer {
-    background-color: #9DDCDC;
+    background-color: black;
     width: 100%;
     padding: 10px 0px;
 }
 
 .about-site {
-    color: #E67A7A;
+    color: rgb(231, 89, 64);
     font-weight: bold;
 }
 
